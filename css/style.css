@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b0b0b;
+  color: white;
+}
+
+.portada {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: #111;
+}
+
+.escudo {
+  width: 170px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+}
+
+.lema {
+  margin-top: 15px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #d8b259;
+}
+
+.botones {
+  margin-top: 35px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn,
+button {
+  padding: 14px 22px;
+  border: none;
+  background: #9d0000;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+main section {
+  padding: 80px 8%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+main h2 {
+  margin-bottom: 20px;
+  border-left: 5px solid #9d0000;
+  padding-left: 15px;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.tarjeta {
+  background: #171717;
+  padding: 30px;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #050505;
+  color: #aaa;
+}
