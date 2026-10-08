@@ -858,8 +858,8 @@ const cloudStatus=document.getElementById("cloudStatus");
 function mensajeNube(s){cloudStatus.textContent=s;}
 async function consultarNube(){
   if(!db || !cloudUser)return;
-  const {data:autorizado,error:authError}=await db.from("voluntarios_autorizados").select("habilitado").eq("user_id",cloudUser.id).maybeSingle();
-  if(authError || !autorizado?.habilitado){
+  const {data:autorizado,error:authError}=await db.from("voluntarios_autorizados").select("habilitado,puede_editar_inventario").eq("user_id",cloudUser.id).maybeSingle();
+  if(authError || !autorizado?.habilitado || !autorizado?.puede_editar_inventario){
     puedeEditar=false; render();
     mensajeNube("Cuenta sin permiso de edición. Solicita autorización al administrador.");
     return;
