@@ -1,58 +1,858 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventario RX6 | Sexta Compañía</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Inventario RX6 | Sexta Compañía</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.inv-wrap{max-width:1500px;margin:auto;padding:42px 5% 70px}
+.inv-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-bottom:28px}
+.inv-eyebrow{color:#a71927;font-size:11px;font-weight:800;letter-spacing:2.5px}
+.inv-title{font-size:clamp(34px,6vw,58px);margin:6px 0 8px;color:#202a31}
+.inv-sub{color:#6d747a;line-height:1.55}
+.save-note{background:#e9edf0;border-left:4px solid #a71927;padding:12px 14px;font-size:12px;color:#525960;max-width:420px}
+.inv-summary{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:12px;margin:25px 0}
+.sum{background:#fff;border-top:3px solid #202a31;padding:16px;box-shadow:0 1px 4px #0002}
+.sum b{display:block;font-size:27px;color:#202a31}
+.sum span{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#747b81}
+.filters{background:#fff;padding:18px;box-shadow:0 1px 5px #0002;display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;margin-bottom:22px}
+.filters input,.filters select{width:100%;padding:12px;border:1px solid #cfd4d8;border-radius:3px;background:#fff}
+.filters button{padding:12px 17px;border:0;border-radius:3px;background:#202a31;color:#fff;font-weight:800}
+.inv-table-wrap{background:#fff;overflow-x:auto;box-shadow:0 2px 8px #0002}
+.inv-table{width:100%;border-collapse:collapse;min-width:1180px}
+.inv-table th{background:#202a31;color:#fff;text-align:left;padding:13px 12px;font-size:10px;letter-spacing:1.4px}
+.inv-table td{padding:12px;border-bottom:1px solid #e5e8ea;font-size:13px}
+.material-name{font-weight:800}
+.material-meta{font-size:11px;color:#858b90}
+.estado-select,.obs-input{width:100%;padding:9px;border:1px solid #cdd2d5;border-radius:3px;background:#fff}
+.estado-select{font-weight:800}
+.st-OPERATIVO{border-left:5px solid #338a54}
+.st-CON-OBSERVACION{border-left:5px solid #c88b18}
+.st-EN-REPARACION{border-left:5px solid #d3651e}
+.st-FUERA-DE-SERVICIO{border-left:5px solid #a71927}
+.st-FALTANTE{border-left:5px solid #353b40}
+.st-SIN-REVISAR{border-left:5px solid #aeb4b8}
+.ubic-badge{font-size:11px;font-weight:800;color:#a71927}
+.empty{padding:35px;text-align:center;color:#777}
+.inv-actions{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:28px}
+.inv-actions a{text-decoration:none;color:#a71927;font-weight:800}
+
+@media(max-width:900px){
+  .inv-summary{grid-template-columns:repeat(2,1fr)}
+  .filters{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:600px){
+  .inv-wrap{padding:28px 16px 55px}
+  .filters{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="barra-avance">
-    COMPAÑÍA SARGENTO ALDEA N6 · INVENTARIO RX6
+<div class="barra-avance">
+  COMPAÑÍA SARGENTO ALDEA N6 · INVENTARIO RX6
+</div>
+
+<header class="header">
+
+  <div class="marca">
+    <img src="escudo.png" alt="Escudo Sexta Compañía">
+
+    <div>
+      <h3>COMPAÑÍA SARGENTO ALDEA N6</h3>
+      <p>BOMBEROS · IQUIQUE · CHILE</p>
+    </div>
   </div>
 
-  <header class="header">
-    <div class="marca">
-      <img src="escudo.png" alt="Escudo Sexta Compañía">
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="guardias.html">Guardias</a>
+    <a href="inventario.html">Inventario</a>
+    <a href="b6.html">B6</a>
+  </nav>
 
-      <div>
-        <h3>COMPAÑÍA SARGENTO ALDEA N6</h3>
-        <p>BOMBEROS · IQUIQUE · CHILE</p>
+</header>
+
+
+<main style="background:#f0f1f2;min-height:70vh">
+
+<div class="inv-wrap">
+
+  <div class="inv-top">
+
+    <div>
+      <div class="inv-eyebrow">
+        MATERIAL MAYOR · CONTROL OPERATIVO
       </div>
+
+      <h1 class="inv-title">
+        INVENTARIO RX6
+      </h1>
+
+      <p class="inv-sub">
+        Control de estado del material correspondiente al carro RX6.
+      </p>
     </div>
 
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="guardias.html">Guardias</a>
-      <a href="inventario.html">Inventario</a>
-      <a href="b6.html">B6</a>
-    </nav>
-  </header>
+    <div class="save-note">
+      <strong>Guardado automático:</strong>
+      los cambios quedan guardados en este dispositivo.
+    </div>
 
-  <main class="pagina-interna">
+  </div>
 
-    <section class="titulo-interno">
-      <p>MATERIAL MAYOR · RX6</p>
-      <h1>INVENTARIO RX6</h1>
-      <span>Control de estado del material del carro RX6.</span>
-    </section>
 
-    <section class="tabla-inventario">
+  <section class="inv-summary">
 
-      <div class="fila-inventario encabezado-inventario">
-        <div>ELEMENTO</div>
-        <div>ESTADO</div>
-        <div>OBSERVACIÓN</div>
-      </div>
+    <div class="sum">
+      <b id="sumTotal">0</b>
+      <span>REGISTROS</span>
+    </div>
 
-      <div class="fila-inventario">
-        <div>Herramienta hidráulica</div>
+    <div class="sum">
+      <b id="sumOperativo">0</b>
+      <span>OPERATIVOS</span>
+    </div>
 
-        <div>
-          <select class="estado">
-            <option>OPERATIVO</option>
-            <option>CON OBSERVACIÓN</option>
-            <option>EN REPARACIÓN</option>
-            <
+    <div class="sum">
+      <b id="sumObs">0</b>
+      <span>CON OBSERVACIÓN</span>
+    </div>
+
+    <div class="sum">
+      <b id="sumFuera">0</b>
+      <span>FUERA DE SERVICIO</span>
+    </div>
+
+    <div class="sum">
+      <b id="sumSin">0</b>
+      <span>SIN REVISAR</span>
+    </div>
+
+  </section>
+
+
+  <section class="filters">
+
+    <input
+      id="search"
+      type="search"
+      placeholder="Buscar material, marca, modelo u observación..."
+    >
+
+    <select id="filterLocation">
+      <option value="">Todas las ubicaciones</option>
+    </select>
+
+    <select id="filterStatus">
+      <option value="">Todos los estados</option>
+      <option>OPERATIVO</option>
+      <option>CON OBSERVACIÓN</option>
+      <option>EN REPARACIÓN</option>
+      <option>FUERA DE SERVICIO</option>
+      <option>FALTANTE</option>
+      <option>SIN REVISAR</option>
+    </select>
+
+    <button id="clearFilters">
+      LIMPIAR
+    </button>
+
+  </section>
+
+
+  <section class="inv-table-wrap">
+
+    <table class="inv-table">
+
+      <thead>
+        <tr>
+          <th>ÍTEM</th>
+          <th>MATERIAL</th>
+          <th>MARCA / MODELO</th>
+          <th>CANT.</th>
+          <th>UBICACIÓN</th>
+          <th>ESTADO</th>
+          <th>OBSERVACIÓN</th>
+        </tr>
+      </thead>
+
+      <tbody id="inventoryBody"></tbody>
+
+    </table>
+
+    <div id="empty" class="empty" hidden>
+      No se encontraron elementos.
+    </div>
+
+  </section>
+
+
+  <div class="inv-actions">
+
+    <a href="inventario.html">
+      ← VOLVER A INVENTARIO
+    </a>
+
+    <a href="index.html">
+      VOLVER A INICIO
+    </a>
+
+  </div>
+
+</div>
+
+</main>
+
+
+<footer>
+  COMPAÑÍA SARGENTO ALDEA N6 · IQUIQUE · CHILE
+</footer>
+
+
+<script>
+
+const VEHICULO="RX6";
+const STORAGE_KEY="sexta_inventario_rx6_v1";
+
+const RAW=`1	RADIO BASE	MOTOROLA		1	CABINA DELANTERA	OPERATIVO	
+2	SIRENA	FEDERAL SIGNAL		1	CABINA DELANTERA	OPERATIVO	
+3	CHALECO REFLECTANTE			1	CABINA DELANTERA	OPERATIVO	
+4	G.R.E	U.S. Departament of Transportation		1	CABINA DELANTERA	OPERATIVO	
+5	BOMBA DE HUMO	Comet		1	CABINA DELANTERA	OPERATIVO	
+6	LLAVE DE ASCENSOR			2	CABINA DELANTERA	OPERATIVO	
+7	PALANCA INTERCAMBIABLE			2	CABINA DELANTERA	OPERATIVO	PENDIENTE
+8	COJIN INFLABLE MANUAL			1	CABINA TRASERA	OPERATIVO	
+10	LLAVE CORTA CORRIENTE WINCHE			1	CABINA DELANTERA	OPERATIVO	
+11	JOYSTICK CONTROL WINCHE	PROWINCH		1	CABINA DELANTERA	OPERATIVO	
+12	LINTERNA	STREAMLIGHT VULCAN		2	CABINA TRASERA	OPERATIVO	
+13	CHAQUETA IDENTIFICACION			6	CABINA TRASERA	OPERATIVO	
+14	MASCARAS ERA	SCOTT		4	CABINA TRASERA	OPERATIVO	2 CON CAMARA (RIT)
+15	EQUIPOS ERA	SCOTT		4	CABINA TRASERA	OPERATIVO	RIT
+16	CASCOS DE ALTURA	MAMMUT		4	CABINA TRASERA	OPERATIVO	
+18	MEGAFONO			1	CABINA TRASERA	OPERATIVO	
+19	HALLIGAN			1	CABINA TRASERA	OPERATIVO	
+20	BUZOS DE PAPEL TALLA L			4	CABINA TRASERA	OPERATIVO	
+21	HACHA DE BOMBERO			1	CABINA TRASERA	OPERATIVO	
+22	HACHA DE LEÑADOR			1	CABINA TRASERA	OPERATIVO	
+23	HACHA MULTIPROPOSITO			2	CABINA TRASERA	OPERATIVO	
+24	BRAZO INTERCAMBIABLE			1	CABINA TRASERA	OPERATIVO	
+25	BASTON DETECTOR ELECTRICIDAD			1	CABINA TRASERA	OPERATIVO	
+26	CAMARA TERMAL			1	CABINA TRASERA	OPERATIVO	
+28	BOLSO HI LIFT	HI LIFT		2	CABINA TRASERA	OPERATIVO	
+29	DETECTOR MULTI GAS	MSA	ALTAIR 4	1	CABINA TRASERA	OPERATIVO	
+30	TABLAS ESPINALES			4	G1	OPERATIVO	
+31	MAZO	DONQUES		1	G1	OPERATIVO	
+32	PLATAFORMA DE RESCATE	LUKAS		1	G1	OPERATIVO	
+33	CIZALLA HIDRAULICA	HOLMATRO		2	G1	OPERATIVO	
+34	CILINDRO HIDRAULICO	HOLMATRO		2	G1	OPERATIVO	
+35	ESPARRANCADOR HIDRAULICO	HOLMATRO		2	G1	OPERATIVO	
+36	MANGUERAS HIDRAULICAS	HOLMATRO		2	G1	OPERATIVO	
+37	MOTOR HIDRAULICO	HOLMATRO		2	G1	OPERATIVO	
+38	CADENAS	HOLMATRO		2	G1	OPERATIVO	
+39	ACCESORIO TIPO L	HOLMATRO		1	G1	OPERATIVO	
+40	ACCESORIO TIPO L			1	G1	OPERATIVO	
+41	PALAS			2	G1	OPERATIVO	
+42	COLLAR CERVICAL ADULTO			6	G1	OPERATIVO	
+43	TABLA SKEED	SKEED		1	G1	OPERATIVO	
+44	HI-LIFT	HI-LIFT		2	G1	OPERATIVO	
+	ESCOBA			1	G1	OPERATIVO	
+	MANTA HOLMATRO			1	G1	OPERATIVO	
+	BARRERA BIOLOGICA			2	G1	OPERATIVO	
+45	LINTERNA DE ESCENA	STREAMLIGHT		1	G1	OPERATIVO	
+46	INMOVILIZADOR LATERAL			4	G1	OPERATIVO	
+47	CORREA TIPO ARAÑA			4	G1	OPERATIVO	
+48	COLLAR CERVICAL PEDIATRICO			4	G1	OPERATIVO	
+49	MARTILLO DEMODELOR	TOYAKI		1	G1	OPERATIVO	
+50	KIT MANTAS CUBRE BORDE	MAGASU		1	G1	OPERATIVO	
+85	MANTA BARRERA BIOLOGICA			2	G1	OPERATIVO	
+51	PLATAFORMA DE RESCATE	LUKAS		1	G2	OPERATIVO	
+52	CRIBBLOCK	RESQTEC	CB40	5	G2	OPERATIVO	
+53	CRIBBLOCK	RESQTEC	CB80	4	G2	OPERATIVO	
+54	CRIBBLOCK	RESQTEC	CB600	12	G2	OPERATIVO	
+55	CUÑA BISELADA CRIBBLOCK	RESQTEC		4	G2	OPERATIVO	
+56	CUÑA ESCALONADA CRIBBLOCK	RESQTEC		4	G2	OPERATIVO	
+57	PROFIX MAX	RESQTEC	PXM 1400	3	G2	OPERATIVO	
+58	PROFIX MAX	RESQTEC	PXM 880	3	G2	OPERATIVO	
+59	PROFIX MAX	RESQTEC	PXM 600	2	G2	OPERATIVO	
+60	EXTENSION PROFIX MAX	RESQTEC	EX 150	2	G2	OPERATIVO	
+61	EXTENSION PROFIX MAX	RESQTEC	EX 300	2	G2	OPERATIVO	
+62	EXTENSION PROFIX MAX	RESQTEC	EX 600	2	G2	OPERATIVO	
+63	EXTENSION PROFIX MAX	RESQTEC	EX 900	2	G2	OPERATIVO	
+64	EXTENSION PROFIX MAX	RESQTEC	EX 1200	2	G2	OPERATIVO	
+65	CUERDA Y SISTEMA DE DESCENSO	SWISS RESCUE		1	G2	OPERATIVO	
+	BOLSO CUERDA NARANJA			1		SIN REVISAR	UTILITARIA
+66	BOLSO DE FERRETERIA AMARILLO	COURANT		1	G2	OPERATIVO	
+67	BOLSO DE FERRETERIA ROJO	COURANT		1	G2	OPERATIVO	
+69	TRIPODE PARA HALOGENOS	DONGES		2	G2	OPERATIVO	
+70	EXTRACTOR DE AIRE			1	G2	OPERATIVO	
+71	BOLSO DE CUERDA 12MM X 200 MTS	KORDAS	SEMI-ESTATICA	1	G2	OPERATIVO	
+72	BOLSO DE CUERDA 12MM X 150 MTS		SEMI-ESTATICA	1	G2	OPERATIVO	
+73	BOLSO DE CUERDA 12 MM X 100 MTS	KORDAS	SEMI-ESTATICA	1	G2	OPERATIVO	
+74	BOLSO DE CUERDA 12 MM X 150 MTS	KORDAS	SEMI-ESTATICA	1	G2	OPERATIVO	
+75	BOLSO DE CUERDA UTILITARIA 130 MTS			1	G2	OPERATIVO	
+76	ARNES INTEGRAL	MACAYA		4	G2	OPERATIVO	
+77	ARNES INTEGRAL	COURANT		2	G2	OPERATIVO	
+78	CUBRE CUERDAS			5	G2	OPERATIVO	
+	ARNES INTEGRAL			7		SIN REVISAR	
+79	BOLSO VERDE VIA VENOSA			1	G3	OPERATIVO	
+80	BOLSO DE TRAUMA PRIMERA RESPUESTA			1	G3	OPERATIVO	
+81	BOLSO ROJO VIA AEREA			1	G3	OPERATIVO	
+82	DREMEL	BAUKER	MP170	1	G3	OPERATIVO	
+83	KIT DE 6 FERULAS			6	G3	OPERATIVO	
+84	TABLAS PEDIATRICAS	CODIGO 33		2	G3	OPERATIVO	
+86	ROTOMARTILLO	BOSCH		1	G3	OPERATIVO	
+87	SIERRA SABLE	BOSCH		1	G3	OPERATIVO	
+88	SIERRA SABLE	MACE		1	G3	OPERATIVO	
+89	ESMERIL ANGULAR	BOSCH		1	G3	OPERATIVO	
+90	TALADRO PERCUTOR	BOSCH		1	G3	OPERATIVO	
+91	CHAQUETA DE CUERO			1	G3	OPERATIVO	
+92	MALETA ACCESORIOS	BOSCH		1	G3	OPERATIVO	
+93	PROTECCION MANEJO DE VIDRIOS			2	G3	OPERATIVO	
+97	MANTAS PUESTO DE HERRAMIENTAS	HOLMATRO		2	G3	OPERATIVO	
+98	KIT LIMPIEZA HERRAMIENTAS HIDRAULICAS			1	G3	OPERATIVO	
+99	MANTAS DE EXPOSICION			1	G3	OPERATIVO	
+100	CIZALLA ELECTRICA	HOLMATRO		1	G3	OPERATIVO	
+101	CILINDRO ELECTRICO	HOLMATRO		1	G3	OPERATIVO	
+102	ESPARRANCADOR ELECTRICO	HOLMATRO		1	G3	OPERATIVO	
+103	CARGADOR DE BATERIAS	HOLMATRO	PENTHEON	1	G3	OPERATIVO	
+104	CILINDROS DE AIRE	RESQTEC		7	G4	OPERATIVO	
+105	BIDON DE BENCINA	COPEC		1	G4	OPERATIVO	
+106	BIDON DE PETROLEO	COPEC		2	G4	OPERATIVO	
+107	CAJA HERRAMIENTAS			1	G4	OPERATIVO	
+108	GENERADOR ELECTRICO	MENNEKES		1	G4	FUERA DE SERVICIO	NO ENCIENDE
+109	HALOGENOS	MEISTER		2	G4	OPERATIVO	
+110	CONOS RETRACTILES			5	G4	OPERATIVO	
+111	ALARGADOR			1	G4	OPERATIVO	
+112	BASE TRIPODE	RESQTEC		1	G5	OPERATIVO	
+113	CABEZAL GIRATORIO	RESQTEC		2	G5	OPERATIVO	
+117	CABEZAL RHINO	RESQTEC		4	G5	OPERATIVO	
+119	MALETA ACCESORIOS	RESQTEC		1	G5	OPERATIVO	
+121	CAJA DE MANGUERAS			1	G5	OPERATIVO	
+	LLAVE PROFIT	RESQTEC		1	G5	OPERATIVO	
+122	ACCESORIO RAM TIPO ARAÑA			2	G5	OPERATIVO	
+	COJIN LEVANTE NT 2	RESQTEC		2	G5	OPERATIVO	
+124	CAJA TENSORES			1	G5	OPERATIVO	
+125	BOLSA DE CADAVERES			2	G5	OPERATIVO	
+126	PUNTAL V-STRUT	HOLMATRO		2	G5	OPERATIVO	
+	CUÑAS CAMION			2	G5	OPERATIVO	
+	CAJA CUBRE AIRBAG	BAUKER		1	G5	OPERATIVO	
+127	MANTAS INHIBIDORAS DE TENSION			2	G5	OPERATIVO	
+94	KIT MANTAS CUBRE BORDE			1	G5	OPERATIVO	
+95	ABRAZADERAS CORTES PEQUEÑOS			5	G5	OPERATIVO	
+96	ABRAZADERAS CORTES GRANDES			3	G5	OPERATIVO	
+128	CUARTONES DE MADERA		4X4	26	G2	OPERATIVO	
+129	CUÑAS BISELADAS DE MADERA			11	G2	OPERATIVO	
+130	CUARTONES DE MADERA		4X2	10	G2	OPERATIVO	
+131	CUARTONES DE MADERA		6X6	19	G2	OPERATIVO	
+132	PAÑO		2"	1	G6	OPERATIVO	
+133	PAÑO		3"	1	G6	OPERATIVO	
+134	FLOTADOR			1	G6	OPERATIVO	
+135	FILTRO	DIN		1	G6	OPERATIVO	
+136	TRASPASO DE GRIFO			1	G6	OPERATIVO	
+137	LLAVE DE GRIFO			1	G6	OPERATIVO	
+138	LLAVE DE COPLA			1	G6	OPERATIVO	
+139	REDUCCION		3a2	1	G6	OPERATIVO	
+140	TRASPASO DE GRIFO			1	G6	OPERATIVO	
+141	PITON		2"	1	G6	OPERATIVO	
+	PAR RUEDAS CANASTILLO RESC. RIT			1	G6	OPERATIVO	
+	CINTAS ANCLAJE CON MOSQUETON	FERNO		1	G6	OPERATIVO	
+	HERRAMIENTA COMBINADA	HOLMATRO		1	G6	OPERATIVO	
+	BOLSO CAMARA TERMAL	HIKMICRO			G6	SIN REVISAR	2 CUÑAS / CINTAS
+	BOLSO CUERDA UTILITARIA			1	G6	SIN REVISAR	POLEA MOSQUETON
+	MALETA TACTICA RIT			1	G6	OPERATIVO	
+	CILINDRO AIRE	RESQTEC		1	G6	OPERATIVO	
+	BOLSO EQUIPO LEVANTE	RESQTEC		1	G6	SIN REVISAR	1 COJIN SQ8 - 1 SQ12 - MANGUERAS
+	RITPACK			1	G6	OPERATIVO	
+	MATRIMONIO			1	G6	OPERATIVO	HACHA / HALLIGAN
+	MOTO AMOLADORA			1	G6	OPERATIVO	
+143	PROFIX MAX	RESQTEC	PXM 2300	4	TECHO	OPERATIVO	
+144	SOPORTE DE MUROS	RESQTEC		4	TECHO	OPERATIVO	
+145	BLOQUE DE ENCLAVAMIENTO	RESQTEC		6	TECHO	OPERATIVO	
+146	COJIN DE LEVANTE 4TN	RESQTEC		2	TECHO	OPERATIVO	
+149	RESCATA ANIMAL	RESQTEC		1	TECHO	OPERATIVO	
+154	TABLA SANJA CHICA			2	TECHO	OPERATIVO	
+155	TABLA SANJA GRANDE			4	TECHO	OPERATIVO	
+156	CUÑA LARGA		4X2	3	TECHO	OPERATIVO	
+157	TABLA SANJA			7	TECHO	OPERATIVO	
+158	CUBRE CUERDAS			10	G2	OPERATIVO	
+	CANASTILLO DE RESCATE RIT			1	TECHO	OPERATIVO	
+159	ESCALA		5.5 MTS	1	TECHO	OPERATIVO	
+160	ESCALA MULTIUSO	STEIGTECHNIK		1	TECHO	OPERATIVO	
+161	BICHERO	LEATHERHEADTOOLS		1	TECHO	OPERATIVO	
+162	CANASTILLO DE RESCATE	TRAVERSE		1	TECHO	OPERATIVO	
+163	PROTECCION DE GOMA			2	G2	OPERATIVO	
+164	ESTACAS			6	CABINA TRASERA	OPERATIVO	
+165	ESLINGA PARA TIRAR			1	TECHO	OPERATIVO	
+166	COMPRESOR	RESQTEC		1	TECHO	OPERATIVO	
+167	CINTA ANNEAU NEGRA	PETZL		1	TECHO	OPERATIVO	
+168	MULTIPLICADOR DE ANCLAJE 5:1 36 KN	ROCK EXOTICA		3	G2	OPERATIVO	
+169	MULTIPLICADOR DE ANCLAJE 3:1 36 KN	PETZL		1	G2	OPERATIVO	
+170	DESCENDEDOR TIPO 8 40 KN	CMC RESCUE		1	G2	OPERATIVO	
+171	DESCENDEDOR TIPO 8 22 KN	CMC RESCUE		1	G2	OPERATIVO	
+172	POLEA SIMPLE 36KN	CMC RESCUE		3	G2	OPERATIVO	
+173	POLEA SIMPLE 20 KN	CAMP		2	G2	OPERATIVO	
+174	BLOQUEADOR	CMC RESCUE		2	G2	OPERATIVO	
+175	POLEAS DOBLES 22KN	PETZL		4	G2	OPERATIVO	
+176	POLEA DOBLE 50 KN	TWING KONG		1	G2	OPERATIVO	
+177	ASCENDEDOR DE PUÑO (IZQ-DRCH)	PETZL		2	G2	OPERATIVO	
+178	DESTORCEDORES PETZL 33KN	PETZL		2	G2	OPERATIVO	
+179	ESTRIBO (MOSQUETON 40 KN)	YOKE		2	G2	OPERATIVO	
+180	POLEA TRAC 20 KN	PETZL		1	G2	OPERATIVO	
+181	CINTAS DE ANCLAJE AZUL	CMC RESCUE		2	G2	OPERATIVO	
+182	CINTA DE ANCLAJE NEGRA REGULABLE 45 KN	PETZL		1	G2	OPERATIVO	
+183	CINTAS TUBULAR NARANJA			2	G2	OPERATIVO	
+184	CINTAS TUBULAR AZUL			1	G2	OPERATIVO	
+185	CINTA TUBULAR CELESTE			1	G2	OPERATIVO	
+186	LASADAS PRUSING			6	G2	OPERATIVO	
+187	ANILLA	ANEU COURANT		1	G2	OPERATIVO	
+188	MOSQUETONES ALUMINIO TIPO D 32 KN	PETZL		5	G2	OPERATIVO	
+189	MOSQUETONES ACERO OVAL 38 KN	PETZL		5	G2	OPERATIVO	
+190	MOSQUETONES ACERO TIPO D 27 KN	FADERS		4	G2	OPERATIVO	
+191	MOSQUETONES ACERO TIPO D 50 KN	CONCEPT		5	G2	OPERATIVO	
+192	MOSQUETONES ALUMINIO TIPO D 36 KN	CAMP		2	G2	OPERATIVO	
+193	MOSQUETONES ACERO TIPO D 30 KN	SING ING ROCK		2	G2	OPERATIVO	
+194	MOSQUETON ALUMINIO TIPO D 25 KN	PMI		1	G2	OPERATIVO	
+195	CINTA DE ANCLAJE	CMC RESCUE		9	G2	OPERATIVO	
+196	LOOP PRUSIK	DEAL		8	G2	OPERATIVO	
+197	LOOP PRUSIK	CMC RESCUE		4	G2	OPERATIVO	
+198	ANILLAS	COURANT		2	G2	OPERATIVO	
+199	POLEAS SIMPLES 36 KN	ROCK EXOTICA		2	G2	OPERATIVO	
+200	POLEAS SIMPLES CON DESTORCEDOR 36 KN	PETZL		3	G2	OPERATIVO	
+201	BLOQUEADOR	CMC RESCUE		1	G2	OPERATIVO	
+202	DESCENDEDOR TIPO 8 22 KN	CMC RESCUE		1	G2	OPERATIVO	
+203	BLOQUEADOR 140 KG	PETZL		3	G2	OPERATIVO	
+204	POLEAS DOBLES CON DESTORCEDOR 36 KN	PETZL		2	G2	OPERATIVO	
+205	POLEAS DOBLES 36 KN	ROCK EXOTICA		2	G2	OPERATIVO	
+206	POLEAS DOBLES 36 KN	CMC RESCUE		2	G2	OPERATIVO	
+207	POLEA REEVE 36 KN	PETZL		1	G2	OPERATIVO	
+208	ASCENDEDORES DE PUÑO (IZQ-DRCH)	PETZL		3	G2	OPERATIVO	
+209	DESTORCEDORES 39 KN	CMC RESCUE		2	G2	OPERATIVO	
+210	MULTIPLICADOR DE ANCLAJE 3:5	PETZL		3	G2	OPERATIVO	
+211	ESTRIBO CON MOSQUETON 40 KN	YOKE		3	G2	OPERATIVO	
+212	CINTA TUBULAR AZUL			2	G2	OPERATIVO	
+213	CINTA TUBULAR CELESTE			1	G2	OPERATIVO	
+214	CINTAS DE ANCLAJE AZUL 85 KN	CMC RESCUE		2	G2	OPERATIVO	
+215	CINTA DE ANCLAJE REGULABLE 45 KN	PETZL		1	G2	OPERATIVO	
+216	LASADAS PRUSING			5	G2	OPERATIVO	
+217	ANILLA			1	G2	OPERATIVO	
+218	MOSQUETONES ALUMINIO TIPO D 32 KN	PETZL		5	G2	OPERATIVO	
+219	MOSQUETONES ACERO OVAL 38 KN	PETZL		5	G2	OPERATIVO	
+220	MOSQUETONES ACERO TIPO D 50 KN	CONCEPT		3	G2	OPERATIVO	
+221	MOSQUETONES ACERO TIPO D 72 KN	CMC RESCUE		5	G2	OPERATIVO	
+222	MOSQUETON ALUMINIO TIPO D 25 KN	PMI		1	G2	OPERATIVO	
+223	MOSQUETON ALUMINIO TIPO D 32 KN	CAMP		1	G2	OPERATIVO	
+224	MOSQUETONES ALUMINIO TIPO D 30 KN	CONCEPT		2	G2	OPERATIVO	
+225	MOSQUETON ALUMINIO TIPO D 23 KN	SING ING ROCK		1	G2	OPERATIVO	
+226	ID 200 KG	PETZL		2	G2	OPERATIVO	
+227	ID 400 KG	PETZL		2	G2	OPERATIVO	`;
+
+const BASE_DATA =
+RAW.trim()
+.split("\n")
+.map(line=>{
+
+  const [
+    item,
+    material,
+    marca,
+    modelo,
+    cantidad,
+    ubicacion,
+    estado,
+    observacion
+  ] = line.split("\t");
+
+  return {
+    item,
+    material,
+    marca,
+    modelo,
+    cantidad,
+    ubicacion,
+    estado,
+    observacion
+  };
+
+});
+
+
+const ESTADOS=[
+  "OPERATIVO",
+  "CON OBSERVACIÓN",
+  "EN REPARACIÓN",
+  "FUERA DE SERVICIO",
+  "FALTANTE",
+  "SIN REVISAR"
+];
+
+
+let saved={};
+
+try{
+  saved=
+  JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+    || "{}"
+  );
+}
+catch(e){}
+
+
+const data=
+BASE_DATA.map((r,i)=>{
+
+  const id=
+  VEHICULO+"-"+i;
+
+  const s=
+  saved[id]||{};
+
+  return{
+    ...r,
+    id,
+    estado:
+    s.estado||
+    r.estado||
+    "SIN REVISAR",
+
+    observacion:
+    s.observacion ??
+    r.observacion ??
+    ""
+  };
+
+});
+
+
+function saveRow(r){
+
+  saved[r.id]={
+    estado:r.estado,
+    observacion:r.observacion
+  };
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(saved)
+  );
+}
+
+
+function statusClass(s){
+
+  return "st-" +
+  s.normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^A-Z0-9]+/gi,"-")
+  .toUpperCase();
+
+}
+
+
+function esc(v){
+
+  return String(v??"")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;");
+
+}
+
+
+function render(){
+
+  const q=
+  document
+  .getElementById("search")
+  .value
+  .trim()
+  .toLowerCase();
+
+  const loc=
+  document
+  .getElementById("filterLocation")
+  .value;
+
+  const st=
+  document
+  .getElementById("filterStatus")
+  .value;
+
+
+  const filtered=
+  data.filter(r=>{
+
+    const texto=[
+      r.item,
+      r.material,
+      r.marca,
+      r.modelo,
+      r.ubicacion,
+      r.observacion
+    ]
+    .join(" ")
+    .toLowerCase();
+
+    return
+    (!q || texto.includes(q))
+    &&
+    (!loc || r.ubicacion===loc)
+    &&
+    (!st || r.estado===st);
+
+  });
+
+
+  const body=
+  document
+  .getElementById("inventoryBody");
+
+  body.innerHTML="";
+
+
+  for(const r of filtered){
+
+    const tr=
+    document.createElement("tr");
+
+    tr.className=
+    statusClass(r.estado);
+
+
+    const marcaModelo=
+    [r.marca,r.modelo]
+    .filter(Boolean)
+    .join(" · ");
+
+
+    tr.innerHTML=`
+
+      <td>
+        ${esc(r.item||"—")}
+      </td>
+
+      <td>
+        <div class="material-name">
+          ${esc(r.material)}
+        </div>
+      </td>
+
+      <td>
+        <div class="material-meta">
+          ${esc(marcaModelo||"—")}
+        </div>
+      </td>
+
+      <td>
+        ${esc(r.cantidad)}
+      </td>
+
+      <td>
+        <span class="ubic-badge">
+          ${esc(r.ubicacion||"SIN UBICACIÓN")}
+        </span>
+      </td>
+
+      <td>
+
+        <select class="estado-select">
+
+          ${ESTADOS.map(x=>
+            `<option ${x===r.estado?"selected":""}>
+              ${x}
+            </option>`
+          ).join("")}
+
+        </select>
+
+      </td>
+
+      <td>
+
+        <input
+          class="obs-input"
+          value="${esc(r.observacion)}"
+          placeholder="Agregar observación"
+        >
+
+      </td>
+
+    `;
+
+
+    const select=
+    tr.querySelector(".estado-select");
+
+    const input=
+    tr.querySelector(".obs-input");
+
+
+    select.addEventListener(
+      "change",
+      ()=>{
+
+        r.estado=
+        select.value;
+
+        saveRow(r);
+
+        render();
+
+      }
+    );
+
+
+    input.addEventListener(
+      "change",
+      ()=>{
+
+        r.observacion=
+        input.value;
+
+        saveRow(r);
+
+        updateSummary();
+
+      }
+    );
+
+
+    body.appendChild(tr);
+
+  }
+
+
+  document
+  .getElementById("empty")
+  .hidden=
+  filtered.length>0;
+
+
+  updateSummary();
+
+}
+
+
+function updateSummary(){
+
+  const count=
+  estado=>
+  data.filter(
+    r=>r.estado===estado
+  ).length;
+
+
+  document
+  .getElementById("sumTotal")
+  .textContent=
+  data.length;
+
+
+  document
+  .getElementById("sumOperativo")
+  .textContent=
+  count("OPERATIVO");
+
+
+  document
+  .getElementById("sumObs")
+  .textContent=
+  count("CON OBSERVACIÓN");
+
+
+  document
+  .getElementById("sumFuera")
+  .textContent=
+  count("FUERA DE SERVICIO");
+
+
+  document
+  .getElementById("sumSin")
+  .textContent=
+  count("SIN REVISAR");
+
+}
+
+
+const locations=[
+  ...new Set(
+    data
+    .map(r=>r.ubicacion)
+    .filter(Boolean)
+  )
+]
+.sort();
+
+
+const filterLocation=
+document
+.getElementById("filterLocation");
+
+
+locations.forEach(x=>{
+
+  const option=
+  document.createElement("option");
+
+  option.value=x;
+
+  option.textContent=x;
+
+  filterLocation.appendChild(option);
+
+});
+
+
+[
+  "search",
+  "filterLocation",
+  "filterStatus"
+]
+.forEach(id=>{
+
+  document
+  .getElementById(id)
+  .addEventListener(
+    "input",
+    render
+  );
+
+});
+
+
+document
+.getElementById("clearFilters")
+.addEventListener(
+  "click",
+  ()=>{
+
+    document
+    .getElementById("search")
+    .value="";
+
+    document
+    .getElementById("filterLocation")
+    .value="";
+
+    document
+    .getElementById("filterStatus")
+    .value="";
+
+    render();
+
+  }
+);
+
+
+render();
+
+</script>
+
+</body>
+</html>
