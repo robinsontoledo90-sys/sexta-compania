@@ -661,3 +661,79 @@ footer {
   }
 
 }
+/* ==============================
+   INVENTARIO
+================================ */
+
+.inventario-carros {
+  max-width: 1200px;
+  margin: 45px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.carro-card {
+  background: white;
+  padding: 40px;
+  border-top: 4px solid #a71927;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.carro-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 90px;
+  height: 55px;
+
+  padding: 0 20px;
+
+  background: #a71927;
+  color: white;
+
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.carro-card h2 {
+  margin-top: 25px;
+  font-size: 28px;
+}
+
+.carro-card p {
+  margin-top: 18px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.carro-card a {
+  display: inline-block;
+
+  margin-top: 30px;
+
+  padding: 15px 20px;
+
+  background: #202a31;
+  color: white;
+
+  text-decoration: none;
+  font-weight: bold;
+
+  border-radius: 3px;
+}
+
+.carro-card a:hover {
+  background: #a71927;
+}
+
+@media (max-width: 700px) {
+
+  .inventario-carros {
+    grid-template-columns: 1fr;
+  }
+
+}
