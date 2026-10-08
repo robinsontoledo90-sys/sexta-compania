@@ -3,117 +3,871 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Inventario B6 | Sexta Compañía</title>
+
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .inv-wrap {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 42px 5% 70px;
+    }
+
+    .inv-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .inv-eyebrow {
+      color: #a71927;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+    }
+
+    .inv-title {
+      font-size: clamp(34px, 6vw, 58px);
+      margin: 6px 0 8px;
+      color: #202a31;
+    }
+
+    .inv-sub {
+      color: #6d747a;
+      max-width: 760px;
+      line-height: 1.55;
+    }
+
+    .save-note {
+      background: #e9edf0;
+      border-left: 4px solid #a71927;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #525960;
+      max-width: 420px;
+    }
+
+    .inv-summary {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .sum {
+      background: white;
+      border-top: 3px solid #202a31;
+      padding: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+
+    .sum b {
+      display: block;
+      font-size: 27px;
+      color: #202a31;
+    }
+
+    .sum span {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      color: #747b81;
+    }
+
+    .filters {
+      background: white;
+      padding: 18px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 12px;
+
+      margin-bottom: 22px;
+    }
+
+    .filters input,
+    .filters select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cfd4d8;
+      border-radius: 3px;
+      background: white;
+    }
+
+    .filters button {
+      padding: 12px 17px;
+      border: 0;
+      border-radius: 3px;
+      background: #202a31;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .inv-table-wrap {
+      background: white;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,.09);
+    }
+
+    .inv-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1050px;
+    }
+
+    .inv-table th {
+      background: #202a31;
+      color: white;
+      text-align: left;
+      padding: 13px 12px;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+    }
+
+    .inv-table td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e8ea;
+      vertical-align: middle;
+      font-size: 13px;
+    }
+
+    .inv-table tr:hover td {
+      background: #fafbfb;
+    }
+
+    .material-name {
+      font-weight: 800;
+      color: #242a2e;
+    }
+
+    .material-meta {
+      font-size: 11px;
+      color: #858b90;
+      margin-top: 4px;
+    }
+
+    .estado-select,
+    .obs-input {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #cdd2d5;
+      border-radius: 3px;
+      background: white;
+    }
+
+    .estado-select {
+      font-weight: 800;
+    }
+
+    .st-OPERATIVO {
+      border-left: 5px solid #338a54;
+    }
+
+    .st-CON-OBSERVACION {
+      border-left: 5px solid #c88b18;
+    }
+
+    .st-EN-REPARACION {
+      border-left: 5px solid #d3651e;
+    }
+
+    .st-FUERA-DE-SERVICIO {
+      border-left: 5px solid #a71927;
+    }
+
+    .st-FALTANTE {
+      border-left: 5px solid #353b40;
+    }
+
+    .st-SIN-REVISAR {
+      border-left: 5px solid #aeb4b8;
+    }
+
+    .ubic-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: #a71927;
+    }
+
+    .empty {
+      padding: 35px;
+      text-align: center;
+      color: #777;
+    }
+
+    .inv-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .inv-actions a {
+      text-decoration: none;
+      color: #a71927;
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px) {
+      .inv-summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filters {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .inv-wrap {
+        padding: 28px 16px 55px;
+      }
+
+      .inv-summary {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .save-note {
+        max-width: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="barra-avance">
-    COMPAÑÍA SARGENTO ALDEA N6 · INVENTARIO B6
+<div class="barra-avance">
+  COMPAÑÍA SARGENTO ALDEA N6 · INVENTARIO B6
+</div>
+
+<header class="header">
+
+  <div class="marca">
+
+    <img src="escudo.png" alt="Escudo Sexta Compañía">
+
+    <div>
+      <h3>COMPAÑÍA SARGENTO ALDEA N6</h3>
+      <p>BOMBEROS · IQUIQUE · CHILE</p>
+    </div>
+
   </div>
 
-  <header class="header">
-    <div class="marca">
-      <img src="escudo.png" alt="Escudo Sexta Compañía">
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="guardias.html">Guardias</a>
+    <a href="inventario.html">Inventario</a>
+    <a href="rx6.html">RX6</a>
+  </nav>
 
-      <div>
-        <h3>COMPAÑÍA SARGENTO ALDEA N6</h3>
-        <p>BOMBEROS · IQUIQUE · CHILE</p>
+</header>
+
+
+<main style="background:#f0f1f2;min-height:70vh">
+
+<div class="inv-wrap">
+
+  <div class="inv-top">
+
+    <div>
+
+      <div class="inv-eyebrow">
+        MATERIAL MAYOR · CONTROL OPERATIVO
       </div>
+
+      <h1 class="inv-title">
+        INVENTARIO B6
+      </h1>
+
+      <p class="inv-sub">
+        Control de estado del material correspondiente al carro B6.
+      </p>
+
     </div>
 
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="guardias.html">Guardias</a>
-      <a href="inventario.html">Inventario</a>
-      <a href="rx6.html">RX6</a>
-    </nav>
-  </header>
-
-  <main class="pagina-interna">
-
-    <section class="titulo-interno">
-      <p>MATERIAL MAYOR · B6</p>
-      <h1>INVENTARIO B6</h1>
-      <span>Control de estado del material del carro B6.</span>
-    </section>
-
-    <section class="tabla-inventario">
-
-      <div class="fila-inventario encabezado-inventario">
-        <div>ELEMENTO</div>
-        <div>ESTADO</div>
-        <div>OBSERVACIÓN</div>
-      </div>
-
-      <div class="fila-inventario">
-        <div>Manguera 1</div>
-
-        <div>
-          <select class="estado">
-            <option>OPERATIVO</option>
-            <option>CON OBSERVACIÓN</option>
-            <option>EN REPARACIÓN</option>
-            <option>FUERA DE SERVICIO</option>
-            <option>FALTANTE</option>
-          </select>
-        </div>
-
-        <div>
-          <input type="text" placeholder="Agregar observación">
-        </div>
-      </div>
-
-      <div class="fila-inventario">
-        <div>Linterna</div>
-
-        <div>
-          <select class="estado">
-            <option>OPERATIVO</option>
-            <option>CON OBSERVACIÓN</option>
-            <option>EN REPARACIÓN</option>
-            <option>FUERA DE SERVICIO</option>
-            <option>FALTANTE</option>
-          </select>
-        </div>
-
-        <div>
-          <input type="text" placeholder="Agregar observación">
-        </div>
-      </div>
-
-      <div class="fila-inventario">
-        <div>Equipo ERA</div>
-
-        <div>
-          <select class="estado">
-            <option>OPERATIVO</option>
-            <option>CON OBSERVACIÓN</option>
-            <option>EN REPARACIÓN</option>
-            <option>FUERA DE SERVICIO</option>
-            <option>FALTANTE</option>
-          </select>
-        </div>
-
-        <div>
-          <input type="text" placeholder="Agregar observación">
-        </div>
-      </div>
-
-    </section>
-
-    <div class="volver">
-      <a href="inventario.html">
-        ← VOLVER A INVENTARIO
-      </a>
+    <div class="save-note">
+      <strong>Guardado automático:</strong>
+      los cambios realizados quedan guardados en este dispositivo.
     </div>
 
-  </main>
+  </div>
 
-  <footer>
-    COMPAÑÍA SARGENTO ALDEA N6 · IQUIQUE · CHILE
-  </footer>
+
+  <section class="inv-summary">
+
+    <div class="sum">
+      <b id="sumTotal">0</b>
+      <span>REGISTROS</span>
+    </div>
+
+    <div class="sum">
+      <b id="sumOperativo">0</b>
+      <span>OPERATIVOS</span>
+    </div>
+
+    <div class="sum">
+      <b id="sumObs">0</b>
+      <span>CON OBSERVACIÓN</span>
+    </div>
+
+    <div class="sum">
+      <b id="sumFuera">0</b>
+      <span>FUERA DE SERVICIO</span>
+    </div>
+
+    <div class="sum">
+      <b id="sumSin">0</b>
+      <span>SIN REVISAR</span>
+    </div>
+
+  </section>
+
+
+  <section class="filters">
+
+    <input
+      id="search"
+      type="search"
+      placeholder="Buscar material..."
+    >
+
+    <select id="filterLocation">
+      <option value="">Todas las ubicaciones</option>
+    </select>
+
+    <select id="filterStatus">
+
+      <option value="">Todos los estados</option>
+
+      <option>OPERATIVO</option>
+      <option>CON OBSERVACIÓN</option>
+      <option>EN REPARACIÓN</option>
+      <option>FUERA DE SERVICIO</option>
+      <option>FALTANTE</option>
+      <option>SIN REVISAR</option>
+
+    </select>
+
+    <button id="clearFilters">
+      LIMPIAR
+    </button>
+
+  </section>
+
+
+  <section class="inv-table-wrap">
+
+    <table class="inv-table">
+
+      <thead>
+
+        <tr>
+          <th>ÍTEM</th>
+          <th>MATERIAL</th>
+          <th>CANT.</th>
+          <th>UBICACIÓN</th>
+          <th>ESTADO</th>
+          <th>OBSERVACIÓN</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="inventoryBody"></tbody>
+
+    </table>
+
+    <div id="empty" class="empty" hidden>
+      No se encontraron elementos.
+    </div>
+
+  </section>
+
+
+  <div class="inv-actions">
+
+    <a href="inventario.html">
+      ← VOLVER A INVENTARIO
+    </a>
+
+    <a href="index.html">
+      VOLVER A INICIO
+    </a>
+
+  </div>
+
+</div>
+
+</main>
+
+
+<footer>
+  COMPAÑÍA SARGENTO ALDEA N6 · IQUIQUE · CHILE
+</footer>
+
+
+<script>
+
+const VEHICULO = "B6";
+
+const STORAGE_KEY =
+"sexta_inventario_b6_v1";
+
+
+const BASE_DATA = [
+
+{item:1,material:"GUIA GRE",cantidad:1,ubicacion:"CABINA DELANTERA"},
+{item:2,material:"DETECTOR DE VOLTAJE",cantidad:1,ubicacion:"CABINA TRASERA"},
+{item:3,material:"EQUIPO RESPIRACIÓN AUTOCONTENIDO",cantidad:4,ubicacion:"CABINA TRASERA"},
+{item:4,material:"DETECTOR DE GAS",cantidad:1,ubicacion:"CABINA TRASERA",observacion:"MASTERCOOL"},
+{item:5,material:"CILINDROS DE AIRE",cantidad:3,ubicacion:"CABINA TRASERA"},
+{item:6,material:"CÁMARA TERMAL",cantidad:1,ubicacion:"CABINA TRASERA"},
+{item:7,material:"GATA CAMIÓN",cantidad:1,ubicacion:"CABINA TRASERA"},
+{item:8,material:"CUÑAS DE CARRO",cantidad:2,ubicacion:"CABINA TRASERA"},
+{item:9,material:"PALA",cantidad:1,ubicacion:"CABINA TRASERA"},
+{item:10,material:"MÁSCARA ERA",cantidad:4,ubicacion:"CABINA TRASERA"},
+
+{item:11,material:"EQUIPO RESPIRACIÓN AUTOCONTENIDO",cantidad:6,ubicacion:"G1"},
+{item:12,material:"CILINDROS DE AIRE",cantidad:6,ubicacion:"G1",observacion:"60 MIN"},
+{item:13,material:"MÁSCARA ERA",cantidad:6,ubicacion:"G1"},
+{item:14,material:"PAÑOS 2\"",cantidad:8,ubicacion:"G1"},
+
+{item:15,material:"VENTILADOR DE PRESIÓN POSITIVA",cantidad:1,ubicacion:"G2"},
+{item:16,material:"BOLSO ROJO INCENDIO EN ALTURA",cantidad:1,ubicacion:"G2"},
+{item:17,material:"GEMELO",cantidad:1,ubicacion:"G2"},
+{item:18,material:"REDUCCIÓN",cantidad:2,ubicacion:"G2"},
+{item:19,material:"CORDÍN + MOSQUETÓN",cantidad:1,ubicacion:"G2"},
+{item:20,material:"HACHA CHICA",cantidad:1,ubicacion:"G2"},
+{item:21,material:"DIABLO",cantidad:1,ubicacion:"G2"},
+{item:22,material:"LINZA",cantidad:2,ubicacion:"G2"},
+{item:23,material:"CUÑA",cantidad:1,ubicacion:"G2"},
+
+{item:24,material:"TRASPASO",cantidad:1,ubicacion:"G3"},
+{item:25,material:"REDUCCIÓN COPEC",cantidad:1,ubicacion:"G3"},
+{item:26,material:"LLAVE STORZ",cantidad:2,ubicacion:"G3"},
+{item:27,material:"LLAVE DE GRIFO",cantidad:3,ubicacion:"G3"},
+{item:28,material:"PITÓN SMOOTH BORE 3",cantidad:1,ubicacion:"G3"},
+{item:29,material:"TRIFULCA TFT",cantidad:1,ubicacion:"G3"},
+{item:30,material:"HACHAS DE BOMBERO",cantidad:3,ubicacion:"G3"},
+{item:31,material:"HALLIGAN",cantidad:3,ubicacion:"G3"},
+{item:32,material:"PALA",cantidad:1,ubicacion:"G3"},
+{item:33,material:"NAPOLEÓN",cantidad:1,ubicacion:"G3"},
+{item:34,material:"TNT LEATHERHEAD TOOLS",cantidad:2,ubicacion:"G3"},
+{item:35,material:"FILTRO DE SUCCIÓN",cantidad:2,ubicacion:"G3"},
+{item:36,material:"FLOTADOR",cantidad:1,ubicacion:"G3"},
+{item:37,material:"PITÓN MONITOR",cantidad:1,ubicacion:"G3"},
+{item:38,material:"MANGUERA RECIRCULACIÓN",cantidad:1,ubicacion:"G3"},
+{item:39,material:"BICHERO CORTO",cantidad:1,ubicacion:"G3"},
+{item:40,material:"FILTRO PLANO PISCINA",cantidad:1,ubicacion:"G3",observacion:"SIFÓN"},
+
+{item:41,material:"EQUIPO RESPIRACIÓN AUTOCONTENIDO",cantidad:5,ubicacion:"G4"},
+{item:42,material:"CILINDROS DE AIRE",cantidad:7,ubicacion:"G4"},
+{item:43,material:"MÁSCARA ERA",cantidad:5,ubicacion:"G4"},
+
+{item:44,material:"PAÑOS 2\"",cantidad:4,ubicacion:"G5"},
+{item:45,material:"PITÓN 2\"",cantidad:1,ubicacion:"G5"},
+
+{item:46,material:"PAÑOS 2\"",cantidad:4,ubicacion:"G6"},
+{item:47,material:"PITÓN 2\" SMOOTHBORE",cantidad:1,ubicacion:"G6"},
+
+{item:48,material:"MANGUERA RÍGIDA DE SUCCIÓN",cantidad:4,ubicacion:"GABETA SUP TRASERA"},
+{item:49,material:"BICHERO CORTO",cantidad:2,ubicacion:"GABETA SUP TRASERA"},
+{item:50,material:"RASTRILLOS",cantidad:2,ubicacion:"GABETA SUP TRASERA"},
+{item:51,material:"MANGUERA SEMIRRÍGIDA DE ATAQUE",cantidad:1,ubicacion:"GABETA SUP TRASERA"},
+
+{item:52,material:"PAÑOS 3\"",cantidad:3,ubicacion:"ARMADA BASE"},
+
+{item:53,material:"PAÑOS 3\"",cantidad:5,ubicacion:"POLLO DERECHO"},
+{item:54,material:"PAÑOS 3\"",cantidad:4,ubicacion:"POLLO IZQUIERDO"},
+
+{item:55,material:"ESCALA 5 METROS",cantidad:1,ubicacion:"TECHO"},
+{item:56,material:"ESCALAS 4.5 METROS",cantidad:2,ubicacion:"TECHO"},
+{item:57,material:"CILINDROS DE AIRE",cantidad:3,ubicacion:"CAJÓN TECHO"},
+{item:58,material:"PAÑO 3\"",cantidad:1,ubicacion:"TECHO"},
+{item:59,material:"CONOS",cantidad:3,ubicacion:"TECHO"},
+{item:60,material:"PAÑOS 110 MM LDH",cantidad:3,ubicacion:"TECHO"},
+{item:61,material:"PISCINA HUSKY",cantidad:1,ubicacion:"TECHO"},
+{item:62,material:"BICHERO LARGO",cantidad:1,ubicacion:"TECHO"},
+{item:63,material:"BOLSO MÉDICO",cantidad:2,ubicacion:"CAJÓN TECHO"}
+
+];
+
+
+const ESTADOS = [
+"OPERATIVO",
+"CON OBSERVACIÓN",
+"EN REPARACIÓN",
+"FUERA DE SERVICIO",
+"FALTANTE",
+"SIN REVISAR"
+];
+
+
+let saved = {};
+
+try {
+
+saved =
+JSON.parse(
+localStorage.getItem(STORAGE_KEY) || "{}"
+);
+
+}
+catch(e) {
+
+saved = {};
+
+}
+
+
+const data =
+BASE_DATA.map((r,i) => {
+
+const id =
+VEHICULO + "-" + i;
+
+const s =
+saved[id] || {};
+
+return {
+
+...r,
+
+id,
+
+estado:
+s.estado ||
+"SIN REVISAR",
+
+observacion:
+s.observacion ??
+r.observacion ??
+""
+
+};
+
+});
+
+
+function saveRow(r) {
+
+saved[r.id] = {
+
+estado:r.estado,
+
+observacion:r.observacion
+
+};
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(saved)
+);
+
+}
+
+
+function statusClass(s) {
+
+return "st-" +
+s.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.replace(/[^A-Z0-9]+/gi,"-")
+.toUpperCase();
+
+}
+
+
+function render() {
+
+const q =
+document
+.getElementById("search")
+.value
+.trim()
+.toLowerCase();
+
+
+const loc =
+document
+.getElementById("filterLocation")
+.value;
+
+
+const st =
+document
+.getElementById("filterStatus")
+.value;
+
+
+const filtered =
+data.filter(r => {
+
+const texto =
+[
+r.material,
+r.ubicacion,
+r.observacion,
+String(r.item)
+]
+.join(" ")
+.toLowerCase();
+
+return
+(!q || texto.includes(q))
+&&
+(!loc || r.ubicacion === loc)
+&&
+(!st || r.estado === st);
+
+});
+
+
+const body =
+document
+.getElementById("inventoryBody");
+
+
+body.innerHTML = "";
+
+
+for(const r of filtered) {
+
+const tr =
+document.createElement("tr");
+
+
+tr.className =
+statusClass(r.estado);
+
+
+tr.innerHTML = `
+
+<td>${r.item}</td>
+
+<td>
+<div class="material-name">
+${r.material}
+</div>
+</td>
+
+<td>
+${r.cantidad}
+</td>
+
+<td>
+<span class="ubic-badge">
+${r.ubicacion}
+</span>
+</td>
+
+<td>
+
+<select class="estado-select">
+
+${ESTADOS.map(x =>
+`<option ${x===r.estado ? "selected":""}>
+${x}
+</option>`
+).join("")}
+
+</select>
+
+</td>
+
+<td>
+
+<input
+class="obs-input"
+value="${r.observacion}"
+placeholder="Agregar observación"
+>
+
+</td>
+
+`;
+
+
+const select =
+tr.querySelector(".estado-select");
+
+
+const input =
+tr.querySelector(".obs-input");
+
+
+select.addEventListener(
+"change",
+() => {
+
+r.estado =
+select.value;
+
+saveRow(r);
+
+render();
+
+}
+);
+
+
+input.addEventListener(
+"change",
+() => {
+
+r.observacion =
+input.value;
+
+saveRow(r);
+
+updateSummary();
+
+}
+);
+
+
+body.appendChild(tr);
+
+}
+
+
+document
+.getElementById("empty")
+.hidden =
+filtered.length > 0;
+
+
+updateSummary();
+
+}
+
+
+function updateSummary() {
+
+const count =
+estado =>
+data.filter(
+r => r.estado === estado
+).length;
+
+
+document
+.getElementById("sumTotal")
+.textContent =
+data.length;
+
+
+document
+.getElementById("sumOperativo")
+.textContent =
+count("OPERATIVO");
+
+
+document
+.getElementById("sumObs")
+.textContent =
+count("CON OBSERVACIÓN");
+
+
+document
+.getElementById("sumFuera")
+.textContent =
+count("FUERA DE SERVICIO");
+
+
+document
+.getElementById("sumSin")
+.textContent =
+count("SIN REVISAR");
+
+}
+
+
+const locations =
+[
+...new Set(
+data
+.map(r => r.ubicacion)
+.filter(Boolean)
+)
+]
+.sort();
+
+
+const fl =
+document
+.getElementById("filterLocation");
+
+
+locations.forEach(x => {
+
+const option =
+document.createElement("option");
+
+option.value = x;
+
+option.textContent = x;
+
+fl.appendChild(option);
+
+});
+
+
+[
+"search",
+"filterLocation",
+"filterStatus"
+]
+.forEach(id => {
+
+document
+.getElementById(id)
+.addEventListener(
+"input",
+render
+);
+
+});
+
+
+document
+.getElementById("clearFilters")
+.addEventListener(
+"click",
+() => {
+
+document
+.getElementById("search")
+.value = "";
+
+document
+.getElementById("filterLocation")
+.value = "";
+
+document
+.getElementById("filterStatus")
+.value = "";
+
+render();
+
+}
+);
+
+
+render();
+
+</script>
 
 </body>
 </html>
