@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Acceso Voluntarios | Sexta Compañía</title><link rel="stylesheet" href="css/style.css"><style>
+main{min-height:72vh;background:#eff0f2;padding:42px 5%}.wrap{max-width:1150px;margin:auto}.eyebrow{font-size:12px;letter-spacing:2px;color:#a71927;font-weight:800}.heading{font-size:clamp(30px,5vw,52px);color:#202a31;margin:10px 0 15px}.panel{background:white;border-left:5px solid #a71927;padding:24px;margin:24px 0;box-shadow:0 2px 8px #0001}.fields{display:flex;flex-wrap:wrap;gap:12px}.fields input{padding:13px;border:1px solid #cdd2d5;min-width:220px;flex:1}.btn{background:#202a31;color:#fff;border:0;padding:13px 18px;font-weight:750;cursor:pointer}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.tile{background:white;padding:25px;text-decoration:none;color:#202a31;border-top:4px solid #a71927;box-shadow:0 2px 8px #0001}.tile h2{font-size:19px}.tile p{color:#616970;font-size:13px;line-height:1.5}.tile[aria-disabled="true"]{opacity:.53;pointer-events:none}.hint{color:#565f66;font-size:13px}.hide{display:none!important}
+</style></head><body>
+<div class="barra-avance">COMPAÑÍA SARGENTO ALDEA N6 · ACCESO VOLUNTARIOS</div><header class="header"><div class="marca"><img src="escudo.png" alt="Escudo Sexta Compañía"><div><h3>COMPAÑÍA SARGENTO ALDEA N6</h3><p>BOMBEROS · IQUIQUE · CHILE</p></div></div><nav><a href="index.html">Inicio</a><a href="guardias.html">Guardias</a><a href="inventario.html">Inventarios</a></nav></header>
+<main><div class="wrap"><div class="eyebrow">PLATAFORMA INSTITUCIONAL · ACCESO RESTRINGIDO</div><h1 class="heading">ACCESO VOLUNTARIOS</h1><p>Ingresa con tu cuenta autorizada de la Sexta Compañía. Las opciones se muestran según tus permisos.</p>
+<section class="panel" id="loginPanel"><h2>INICIAR SESIÓN</h2><form id="loginForm" class="fields"><input type="email" id="email" placeholder="Correo electrónico" autocomplete="username" required><input type="password" id="password" placeholder="Contraseña" autocomplete="current-password" required><button class="btn">INGRESAR</button></form></section>
+<section class="panel hide" id="sessionPanel"><h2 id="welcome"></h2><p id="cargo"></p><button class="btn" id="logout">CERRAR SESIÓN</button></section>
+<p id="status" role="status">Comprobando sesión…</p>
+<div id="modules" class="cards hide">
+<a class="tile" href="b6.html"><h2>INVENTARIO B6</h2><p>Consulta del material mayor y edición autorizada.</p></a>
+<a class="tile" href="rx6.html"><h2>INVENTARIO RX6</h2><p>Estado y observaciones del equipo de rescate.</p></a>
+<a class="tile" href="guardias.html"><h2>GUARDIAS</h2><p>Calendario de guardias de la compañía.</p></a>
+<div class="tile" id="adminTile" aria-disabled="true"><h2>ADMINISTRACIÓN GENERAL</h2><p id="adminText">Gestión de voluntarios, citaciones, fichas y partes. Módulos de edición en desarrollo.</p></div>
+</div>
+</div></main><footer>COMPAÑÍA SARGENTO ALDEA N6 · IQUIQUE · CHILE</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.97.0/dist/umd/supabase.min.js"></script>
+<script>
+const db=window.supabase?.createClient("https://qktxtrlfyewmlgcqrkiz.supabase.co","sb_publishable_JwJ0LvGvRrEtXu--hTCnaQ_3ILqpLmD");
+const $=id=>document.getElementById(id);const show=(id,on)=>$(id).classList.toggle("hide",!on);
+async function load(){
+if(!db){$("status").textContent="No se pudo cargar la conexión. Actualiza la página.";return;}
+const {data:{user},error}=await db.auth.getUser();
+if(error||!user){show("loginPanel",true);show("sessionPanel",false);show("modules",false);$("status").textContent="Inicia sesión para acceder.";return;}
+const {data:profile,error:problem}=await db.from("voluntarios_autorizados").select("nombre,cargo,habilitado,puede_gestionar_cuentas,puede_editar_fichas,puede_publicar_citaciones,puede_gestionar_partes,puede_editar_inventario").eq("user_id",user.id).maybeSingle();
+show("loginPanel",false);show("sessionPanel",true);$("welcome").textContent="CUENTA: "+(profile?.nombre||user.email);
+$("cargo").textContent="Cargo: "+(profile?.cargo||"PENDIENTE DE AUTORIZACIÓN");
+if(problem||!profile?.habilitado){show("modules",false);$("status").textContent="Tu cuenta todavía no tiene autorización. Contacta al administrador.";return;}
+show("modules",true);
+const admin=!!profile.puede_gestionar_cuentas;
+$("adminTile").setAttribute("aria-disabled",admin?"false":"true");
+$("adminText").textContent=admin?"Acceso de administrador reconocido. Próximamente: creación y edición de cuentas, fichas, partes y citaciones.":"Solo disponible para cargos administrativos.";
+$("status").textContent="Sesión autorizada. Permisos cargados correctamente.";
+}
+$("loginForm").addEventListener("submit",async e=>{e.preventDefault();$("status").textContent="Verificando credenciales…";const {error}=await db.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});$("password").value="";if(error){$("status").textContent="No se pudo ingresar: "+error.message;return;}await load()});
+$("logout").addEventListener("click",async()=>{await db.auth.signOut();await load()});load();
+</script></body></html>
