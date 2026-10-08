@@ -1,3 +1,1 @@
-function abrirInventario(carro) {
-  alert("Inventario del carro " + carro);
-}
+console.log("Sitio Sexta Compañía Sargento Aldea N6 cargado correctamente.");
