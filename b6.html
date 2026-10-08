@@ -297,10 +297,7 @@
 
     </div>
 
-    <div class="save-note">
-      <strong>Guardado automático:</strong>
-      los cambios realizados quedan guardados en este dispositivo.
-    </div>
+    <div class="save-note"><strong>Inventario compartido:</strong> la edición requiere acceso autorizado. Los cambios se sincronizan con Supabase.</div>
 
   </div>
 
@@ -335,7 +332,17 @@
   </section>
 
 
-  <section class="filters">
+  <section id="voluntarioPanel" style="background:#fff;padding:18px;margin:14px 0 22px;border-left:4px solid #a71927;box-shadow:0 1px 5px #0002">
+  <strong>ACCESO VOLUNTARIOS · INVENTARIO COMPARTIDO</strong>
+  <p id="cloudStatus" role="status" style="font-size:13px;color:#555">Consulta pública disponible. Para modificar estados, inicia sesión con una cuenta autorizada.</p>
+  <form id="voluntarioForm" style="display:flex;gap:8px;flex-wrap:wrap">
+    <input id="voluntarioEmail" type="email" autocomplete="username" placeholder="Correo institucional" required style="padding:10px;border:1px solid #ccd0d4">
+    <input id="voluntarioPassword" type="password" autocomplete="current-password" placeholder="Contraseña" required style="padding:10px;border:1px solid #ccd0d4">
+    <button type="submit" style="padding:10px 16px;background:#202a31;color:white;border:0">INGRESAR</button>
+  </form>
+  <button type="button" id="voluntarioLogout" hidden style="margin-top:8px;padding:9px 15px">CERRAR SESIÓN</button>
+</section>
+<section class="filters">
 
     <input
       id="search"
@@ -417,6 +424,7 @@
 </footer>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 
 const VEHICULO = "B6";
@@ -560,15 +568,7 @@ r.observacion ??
 });
 
 
-function saveRow(r) {
-
-saved[r.id] = {
-
-estado:r.estado,
-
-observacion:r.observacion
-
-};
+function saveRow(r){ guardarNube(r); };
 
 localStorage.setItem(
 STORAGE_KEY,
@@ -589,7 +589,7 @@ s.normalize("NFD")
 }
 
 
-function render() {
+function render(){
 
 const q =
 document
@@ -675,7 +675,7 @@ ${r.ubicacion}
 
 <td>
 
-<select class="estado-select">
+<select class="estado-select" ${puedeEditar?"":"disabled"}>
 
 ${ESTADOS.map(x =>
 `<option ${x===r.estado ? "selected":""}>
@@ -690,7 +690,7 @@ ${x}
 <td>
 
 <input
-class="obs-input"
+class="obs-input" ${puedeEditar?"":"disabled"}
 value="${r.observacion}"
 placeholder="Agregar observación"
 >
@@ -866,8 +866,78 @@ render();
 );
 
 
-render();
 
+const CLOUD_URL="https://qktxtrlfyewmlgcqrkiz.supabase.co";
+const CLOUD_KEY="sb_publishable_JwJ0LvGvRrEtXu--hTCnaQ_3ILqpLmD";
+const db=window.supabase?.createClient(CLOUD_URL,CLOUD_KEY);
+let puedeEditar=false;
+let cloudUser=null;
+const cloudStatus=document.getElementById("cloudStatus");
+function mensajeNube(s){cloudStatus.textContent=s;}
+async function consultarNube(){
+  if(!db || !cloudUser)return;
+  const {data:autorizado,error:authError}=await db.from("voluntarios_autorizados").select("habilitado").eq("user_id",cloudUser.id).maybeSingle();
+  if(authError || !autorizado?.habilitado){
+    puedeEditar=false; render();
+    mensajeNube("Cuenta sin permiso de edición. Solicita autorización al administrador.");
+    return;
+  }
+  puedeEditar=true;
+  const {data:registros,error}=await db.from("inventario_estados").select("id,estado,observacion").eq("vehiculo",VEHICULO);
+  if(error){mensajeNube("Acceso permitido, pero no fue posible sincronizar: "+error.message);render();return;}
+  for(const r of registros || []){
+    const item=data.find(x=>x.id===r.id);
+    if(item){item.estado=r.estado;item.observacion=r.observacion;}
+  }
+  render();
+  mensajeNube("Conectado como "+cloudUser.email+". Cambios compartidos activados.");
+}
+async function guardarNube(r){
+  if(!puedeEditar || !cloudUser)return;
+  const {error}=await db.from("inventario_estados").upsert({
+    id:r.id,vehiculo:VEHICULO,estado:r.estado,observacion:r.observacion,
+    updated_by:cloudUser.id,updated_at:new Date().toISOString()
+  },{onConflict:"id"});
+  if(error){mensajeNube("No se guardó en la nube: "+error.message);return;}
+  saved[r.id]={estado:r.estado,observacion:r.observacion};
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
+  mensajeNube("Guardado en Supabase · "+new Date().toLocaleTimeString("es-CL"));
+}
+document.getElementById("voluntarioForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(!db){mensajeNube("No se pudo cargar la conexión segura. Revisa tu conexión.");return;}
+  mensajeNube("Verificando acceso…");
+  const {data:session,error}=await db.auth.signInWithPassword({
+    email:document.getElementById("voluntarioEmail").value.trim(),
+    password:document.getElementById("voluntarioPassword").value
+  });
+  document.getElementById("voluntarioPassword").value="";
+  if(error){mensajeNube("No fue posible iniciar sesión: "+error.message);return;}
+  cloudUser=session.user;
+  document.getElementById("voluntarioForm").hidden=true;
+  document.getElementById("voluntarioLogout").hidden=false;
+  await consultarNube();
+});
+document.getElementById("voluntarioLogout").addEventListener("click",async()=>{
+  if(db)await db.auth.signOut();
+  cloudUser=null;puedeEditar=false;
+  document.getElementById("voluntarioForm").hidden=false;
+  document.getElementById("voluntarioLogout").hidden=true;
+  mensajeNube("Sesión cerrada. Solo consulta pública.");
+  render();
+});
+(async()=>{
+  if(!db){mensajeNube("No se pudo cargar Supabase. Consulta disponible en modo local.");return;}
+  const {data:session}=await db.auth.getUser();
+  if(session?.user){
+    cloudUser=session.user;
+    document.getElementById("voluntarioForm").hidden=true;
+    document.getElementById("voluntarioLogout").hidden=false;
+    await consultarNube();
+  }
+})();
+
+render();
 </script>
 
 </body>
