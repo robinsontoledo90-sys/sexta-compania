@@ -141,6 +141,7 @@
     <input id="voluntarioPassword" type="password" autocomplete="current-password" placeholder="Contraseña" required style="padding:10px;border:1px solid #ccd0d4">
     <button type="submit" style="padding:10px 16px;background:#202a31;color:white;border:0">INGRESAR</button>
   </form>
+  <button type="button" id="voluntarioRegistro" style="margin:10px 0;padding:9px 15px">CREAR MI CUENTA</button>
   <button type="button" id="voluntarioLogout" hidden style="margin-top:8px;padding:9px 15px">CERRAR SESIÓN</button>
 </section>
 <section class="filters">
@@ -899,6 +900,17 @@ document.getElementById("voluntarioForm").addEventListener("submit",async event=
   document.getElementById("voluntarioForm").hidden=true;
   document.getElementById("voluntarioLogout").hidden=false;
   await consultarNube();
+});
+document.getElementById("voluntarioRegistro").addEventListener("click",async()=>{
+  if(!db){mensajeNube("No se pudo conectar con Supabase.");return;}
+  const email=document.getElementById("voluntarioEmail").value.trim();
+  const password=document.getElementById("voluntarioPassword").value;
+  if(!email || password.length<12){mensajeNube("Ingresa tu correo y una contraseña nueva de al menos 12 caracteres.");return;}
+  mensajeNube("Registrando cuenta…");
+  const {error}=await db.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+window.location.pathname}});
+  document.getElementById("voluntarioPassword").value="";
+  if(error){mensajeNube("Registro no completado: "+error.message);return;}
+  mensajeNube("Revisa tu correo y confirma el registro. Un administrador deberá habilitar tus permisos.");
 });
 document.getElementById("voluntarioLogout").addEventListener("click",async()=>{
   if(db)await db.auth.signOut();
