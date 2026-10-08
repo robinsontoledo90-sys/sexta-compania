@@ -10,147 +10,657 @@ html {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #0a0a0a;
+  background: white;
+  color: #20252a;
+}
+
+
+/* ==============================
+   BARRA SUPERIOR
+================================ */
+
+.barra-avance {
+  background: #e9edf0;
+  border-bottom: 4px solid #a91626;
+
+  text-align: center;
+
+  padding: 8px;
+
+  font-size: 11px;
+  letter-spacing: 1px;
+
+  color: #777;
+}
+
+
+/* ==============================
+   HEADER
+================================ */
+
+.header {
+  height: 115px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: white;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.marca img {
+  width: 55px;
+}
+
+.marca h3 {
+  font-size: 17px;
+  letter-spacing: .5px;
+}
+
+.marca p {
+  margin-top: 8px;
+
+  font-size: 10px;
+  letter-spacing: 4px;
+
+  color: #888;
+}
+
+
+nav {
+  display: flex;
+  align-items: center;
+
+  gap: 35px;
+}
+
+nav a {
+  color: #252525;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  font-size: 13px;
+}
+
+.btn-acceso {
+  background: #ad1726;
+
+  color: white !important;
+
+  padding: 20px 28px;
+
+  border-radius: 3px;
+}
+
+
+/* ==============================
+   HERO
+================================ */
+
+.hero {
+  position: relative;
+
+  min-height: 440px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #18222a,
+      #202a31
+    );
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: .15;
+
+  background-image:
+    repeating-linear-gradient(
+      130deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,.03) 31px,
+      transparent 32px
+    );
+}
+
+.numero-fondo {
+  position: absolute;
+
+  right: 6%;
+  top: 0;
+
+  font-size: 310px;
+
+  font-weight: bold;
+
+  color: rgba(255,255,255,.025);
+}
+
+.hero-contenido {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+
   color: white;
 }
 
-/* PORTADA */
+.sobrelinea {
+  margin-bottom: 22px;
 
-.portada {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
+  color: #d3af75;
 
-  background:
-    radial-gradient(circle at top, rgba(120,0,0,.25), transparent 40%),
-    linear-gradient(180deg, #141414 0%, #090909 100%);
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 5px;
 }
 
-.escudo {
-  width: 180px;
-  max-width: 45vw;
-  margin-bottom: 30px;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.5));
-}
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
 
-h1 {
-  font-size: clamp(2.2rem, 6vw, 5rem);
-  font-weight: 800;
-  letter-spacing: 1px;
-  max-width: 1200px;
   line-height: 1.05;
+
+  font-weight: 900;
 }
 
 .lema {
-  margin-top: 22px;
-  font-size: 1rem;
+  margin: 35px auto;
+
+  padding: 0 40px;
+
+  width: fit-content;
+
+  color: #dfbd82;
+
+  font-size: 20px;
+
   font-weight: bold;
-  letter-spacing: 4px;
-  color: #d8b259;
+
+  letter-spacing: 3px;
 }
 
-/* BOTONES */
-
-.botones {
-  margin-top: 40px;
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.btn {
+.conoce {
   display: inline-block;
-  padding: 15px 24px;
-  background: linear-gradient(180deg, #b40000, #820000);
+
+  margin-top: 10px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid rgba(255,255,255,.35);
+
   color: white;
+
   text-decoration: none;
+
+  font-size: 11px;
+
   font-weight: bold;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 8px 20px rgba(0,0,0,.25);
-  transition: .2s ease;
+
+  letter-spacing: 2px;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(180deg, #d00000, #990000);
+
+/* ==============================
+   FRANJA
+================================ */
+
+.franja {
+  height: 5px;
+
+  background: #a91626;
+
+  position: relative;
 }
 
-/* SECCIONES */
+.franja span {
+  position: absolute;
 
-main {
-  background: #0d0d0d;
+  right: 26%;
+
+  width: 60px;
+  height: 5px;
+
+  background: #d2b37b;
 }
 
-main section {
-  padding: 80px 8%;
-  max-width: 1200px;
+
+/* ==============================
+   MATERIAL MAYOR
+================================ */
+
+.material {
+  background: white;
+
+  padding: 35px 5% 20px;
+}
+
+.material-imagen {
+  min-height: 440px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 50px;
+
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 45%,
+      rgba(185,0,20,.05) 45% 50%,
+      transparent 50%
+    );
+}
+
+.escudo-grande {
+  width: 310px;
+}
+
+.carros-placeholder {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 20px;
+}
+
+.carros-placeholder div {
+  width: 280px;
+  height: 240px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #a71927;
+
+  color: white;
+
+  font-size: 60px;
+
+  font-weight: bold;
+
+  border-radius: 12px;
+}
+
+.material-info {
+  border-top: 1px solid #ddd;
+
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.material-info span {
+  color: #777;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+}
+
+.material-info strong {
+  font-size: 27px;
+
+  letter-spacing: 5px;
+}
+
+.material-info strong b {
+  color: #a71927;
+}
+
+.material-info strong em {
+  margin: 0 12px;
+
+  color: #c5a66c;
+
+  font-style: normal;
+}
+
+
+/* ==============================
+   COMPAÑÍA
+================================ */
+
+.compania {
+  background: #f0f1f2;
+
+  padding: 65px 0;
+}
+
+.contenedor {
+  width: 88%;
+
+  max-width: 1400px;
+
   margin: auto;
 }
 
-main section + section {
-  border-top: 1px solid #242424;
+.titulo-rojo {
+  color: #9f1b29;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
 }
 
-main h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  border-left: 5px solid #a70000;
-  padding-left: 15px;
+.compania h2 {
+  margin-top: 8px;
+
+  font-size: 35px;
 }
 
-main p {
-  color: #cccccc;
-  line-height: 1.6;
+.intro {
+  margin-top: 15px;
+
+  color: #777;
 }
 
-/* FOOTER */
+
+/* ==============================
+   TARJETAS
+================================ */
+
+.tarjetas {
+  margin-top: 40px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+.tarjeta {
+  min-height: 260px;
+
+  padding: 38px 35px;
+
+  background: white;
+
+  border-top: 3px solid #a71927;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.tarjeta span {
+  color: #9f1b29;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+}
+
+.tarjeta h3 {
+  margin-top: 25px;
+
+  font-size: 20px;
+}
+
+.tarjeta p {
+  margin-top: 25px;
+
+  color: #777;
+
+  line-height: 1.7;
+}
+
+.tarjeta small {
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding: 7px 12px;
+
+  background: #ededed;
+
+  color: #555;
+
+  font-weight: bold;
+}
+
+
+/* ==============================
+   VIPER
+================================ */
+
+.viper {
+  margin-top: 70px;
+
+  padding: 40px;
+
+  background: white;
+
+  border-left: 5px solid #a71927;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.viper span {
+  color: #a71927;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+}
+
+.viper h2 {
+  margin-top: 15px;
+
+  font-size: 32px;
+}
+
+.viper p {
+  margin-top: 15px;
+}
+
+.viper small {
+  display: block;
+
+  margin-top: 15px;
+
+  color: #777;
+
+  max-width: 750px;
+
+  line-height: 1.5;
+}
+
+.btn-viper {
+  background: #ad1726;
+
+  padding: 20px 28px;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  border-radius: 3px;
+}
+
+
+/* ==============================
+   ACCESO
+================================ */
+
+.acceso {
+  padding: 70px 0;
+
+  background: #202a31;
+
+  color: white;
+}
+
+.acceso p {
+  margin-top: 15px;
+
+  color: #ccc;
+}
+
+
+/* ==============================
+   FOOTER
+================================ */
 
 footer {
+  padding: 30px;
+
   text-align: center;
-  padding: 35px 20px;
-  background: #050505;
-  color: #8e8e8e;
-  font-size: .9rem;
-  border-top: 1px solid #222;
+
+  background: #151c21;
+
+  border-top: 4px solid #a71927;
+
+  color: #aaa;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
 }
 
-/* CELULAR */
 
-@media (max-width: 700px) {
+/* ==============================
+   TABLET / CELULAR
+================================ */
 
-  .portada {
-    padding: 30px 18px;
+@media (max-width: 900px) {
+
+  .header {
+    height: auto;
+
+    padding: 25px;
+
+    flex-direction: column;
+
+    gap: 25px;
   }
 
-  .escudo {
-    width: 140px;
+  nav {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 20px;
   }
 
-  h1 {
-    font-size: 2.2rem;
+  .hero {
+    min-height: 420px;
   }
 
-  .lema {
-    font-size: .8rem;
+  .numero-fondo {
+    font-size: 200px;
+  }
+
+  .material-imagen {
+    flex-direction: column;
+
+    min-height: auto;
+
+    padding: 40px 0;
+  }
+
+  .escudo-grande {
+    width: 230px;
+  }
+
+  .carros-placeholder div {
+    width: 180px;
+    height: 150px;
+
+    font-size: 40px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .viper {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 30px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .marca h3 {
+    font-size: 14px;
+  }
+
+  .marca p {
     letter-spacing: 2px;
   }
 
-  .botones {
-    width: 100%;
+  nav {
     flex-direction: column;
   }
 
-  .btn {
-    width: 100%;
+  .hero h1 {
+    font-size: 2.5rem;
   }
 
-  main section {
-    padding: 60px 20px;
+  .lema {
+    font-size: 14px;
+
+    padding: 0;
+
+    letter-spacing: 2px;
   }
+
+  .material-info {
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .carros-placeholder {
+    flex-direction: column;
+  }
+
 }
