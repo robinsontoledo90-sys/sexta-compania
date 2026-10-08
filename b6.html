@@ -624,12 +624,13 @@ String(r.item)
 .join(" ")
 .toLowerCase();
 
-return
+return (
 (!q || texto.includes(q))
 &&
 (!loc || r.ubicacion === loc)
 &&
-(!st || r.estado === st);
+(!st || r.estado === st)
+);
 
 });
 
