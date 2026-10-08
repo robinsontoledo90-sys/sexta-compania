@@ -737,3 +737,97 @@ footer {
   }
 
 }
+/* ==============================
+   TABLA INVENTARIO
+================================ */
+
+.tabla-inventario {
+  max-width: 1200px;
+  margin: 45px auto 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.fila-inventario {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 2fr;
+  gap: 15px;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.encabezado-inventario {
+  background: #202a31;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.estado,
+.fila-inventario input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+@media (max-width: 700px) {
+
+  .fila-inventario {
+    grid-template-columns: 1fr;
+  }
+
+  .encabezado-inventario {
+    display: none;
+  }
+
+}
+/* ==============================
+   TABLA INVENTARIO
+================================ */
+
+.tabla-inventario {
+  max-width: 1200px;
+  margin: 45px auto 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.fila-inventario {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 2fr;
+  gap: 15px;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.encabezado-inventario {
+  background: #202a31;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.estado,
+.fila-inventario input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+@media (max-width: 700px) {
+
+  .fila-inventario {
+    grid-template-columns: 1fr;
+  }
+
+  .encabezado-inventario {
+    display: none;
+  }
+
+}
