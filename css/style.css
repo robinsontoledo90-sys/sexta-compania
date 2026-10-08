@@ -22,14 +22,10 @@ body {
 .barra-avance {
   background: #e9edf0;
   border-bottom: 4px solid #a91626;
-
   text-align: center;
-
   padding: 8px;
-
   font-size: 11px;
   letter-spacing: 1px;
-
   color: #777;
 }
 
@@ -39,14 +35,11 @@ body {
 ================================ */
 
 .header {
-  height: 115px;
-
+  min-height: 115px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 6%;
-
+  padding: 20px 6%;
   background: white;
 }
 
@@ -58,6 +51,7 @@ body {
 
 .marca img {
   width: 55px;
+  height: auto;
 }
 
 .marca h3 {
@@ -67,38 +61,28 @@ body {
 
 .marca p {
   margin-top: 8px;
-
   font-size: 10px;
   letter-spacing: 4px;
-
   color: #888;
 }
-
 
 nav {
   display: flex;
   align-items: center;
-
   gap: 35px;
 }
 
 nav a {
   color: #252525;
-
   text-decoration: none;
-
   font-weight: bold;
-
   font-size: 13px;
 }
 
 .btn-acceso {
   background: #ad1726;
-
   color: white !important;
-
   padding: 20px 28px;
-
   border-radius: 3px;
 }
 
@@ -109,13 +93,10 @@ nav a {
 
 .hero {
   position: relative;
-
   min-height: 440px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   overflow: hidden;
 
   background:
@@ -128,11 +109,8 @@ nav a {
 
 .hero::before {
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   opacity: .15;
 
   background-image:
@@ -147,80 +125,53 @@ nav a {
 
 .numero-fondo {
   position: absolute;
-
   right: 6%;
-  top: 0;
-
+  top: -20px;
   font-size: 310px;
-
   font-weight: bold;
-
   color: rgba(255,255,255,.025);
 }
 
 .hero-contenido {
   position: relative;
-
   z-index: 2;
-
   text-align: center;
-
   color: white;
 }
 
 .sobrelinea {
   margin-bottom: 22px;
-
   color: #d3af75;
-
   font-size: 11px;
-
   font-weight: bold;
-
   letter-spacing: 5px;
 }
 
 .hero h1 {
   font-size: clamp(3rem, 6vw, 5.5rem);
-
   line-height: 1.05;
-
   font-weight: 900;
 }
 
 .lema {
   margin: 35px auto;
-
   padding: 0 40px;
-
   width: fit-content;
-
   color: #dfbd82;
-
   font-size: 20px;
-
   font-weight: bold;
-
   letter-spacing: 3px;
 }
 
 .conoce {
   display: inline-block;
-
   margin-top: 10px;
-
   padding-bottom: 12px;
-
   border-bottom: 1px solid rgba(255,255,255,.35);
-
   color: white;
-
   text-decoration: none;
-
   font-size: 11px;
-
   font-weight: bold;
-
   letter-spacing: 2px;
 }
 
@@ -231,20 +182,15 @@ nav a {
 
 .franja {
   height: 5px;
-
   background: #a91626;
-
   position: relative;
 }
 
 .franja span {
   position: absolute;
-
   right: 26%;
-
   width: 60px;
   height: 5px;
-
   background: #d2b37b;
 }
 
@@ -255,20 +201,17 @@ nav a {
 
 .material {
   background: white;
-
   padding: 35px 5% 20px;
 }
 
 .material-imagen {
   min-height: 440px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 50px;
-
+  gap: 40px;
   position: relative;
+  padding: 30px 0;
 
   background:
     linear-gradient(
@@ -280,39 +223,20 @@ nav a {
 }
 
 .escudo-grande {
-  width: 310px;
+  width: 290px;
+  max-width: 25%;
+  height: auto;
 }
 
-.carros-placeholder {
-  display: flex;
-
-  align-items: flex-end;
-
-  gap: 20px;
-}
-
-.carros-placeholder div {
-  width: 280px;
-  height: 240px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #a71927;
-
-  color: white;
-
-  font-size: 60px;
-
-  font-weight: bold;
-
-  border-radius: 12px;
+.carros-img {
+  width: 860px;
+  max-width: 70%;
+  height: auto;
+  display: block;
 }
 
 .material-info {
   border-top: 1px solid #ddd;
-
   padding: 20px 0;
 
   display: flex;
@@ -322,17 +246,13 @@ nav a {
 
 .material-info span {
   color: #777;
-
   font-size: 11px;
-
   font-weight: bold;
-
   letter-spacing: 2px;
 }
 
 .material-info strong {
   font-size: 27px;
-
   letter-spacing: 5px;
 }
 
@@ -342,9 +262,7 @@ nav a {
 
 .material-info strong em {
   margin: 0 12px;
-
   color: #c5a66c;
-
   font-style: normal;
 }
 
@@ -355,37 +273,29 @@ nav a {
 
 .compania {
   background: #f0f1f2;
-
   padding: 65px 0;
 }
 
 .contenedor {
   width: 88%;
-
   max-width: 1400px;
-
   margin: auto;
 }
 
 .titulo-rojo {
   color: #9f1b29;
-
   font-size: 11px;
-
   font-weight: bold;
-
   letter-spacing: 2px;
 }
 
 .compania h2 {
   margin-top: 8px;
-
   font-size: 35px;
 }
 
 .intro {
   margin-top: 15px;
-
   color: #777;
 }
 
@@ -396,61 +306,43 @@ nav a {
 
 .tarjetas {
   margin-top: 40px;
-
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 25px;
 }
 
 .tarjeta {
   min-height: 260px;
-
   padding: 38px 35px;
-
   background: white;
-
   border-top: 3px solid #a71927;
-
   box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
 
 .tarjeta span {
   color: #9f1b29;
-
   font-size: 11px;
-
   font-weight: bold;
-
   letter-spacing: 2px;
 }
 
 .tarjeta h3 {
   margin-top: 25px;
-
   font-size: 20px;
 }
 
 .tarjeta p {
   margin-top: 25px;
-
   color: #777;
-
   line-height: 1.7;
 }
 
 .tarjeta small {
   display: inline-block;
-
   margin-top: 20px;
-
   padding: 7px 12px;
-
   background: #ededed;
-
   color: #555;
-
   font-weight: bold;
 }
 
@@ -461,33 +353,24 @@ nav a {
 
 .viper {
   margin-top: 70px;
-
   padding: 40px;
-
   background: white;
-
   border-left: 5px solid #a71927;
 
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 }
 
 .viper span {
   color: #a71927;
-
   font-size: 11px;
-
   font-weight: bold;
-
   letter-spacing: 3px;
 }
 
 .viper h2 {
   margin-top: 15px;
-
   font-size: 32px;
 }
 
@@ -497,27 +380,18 @@ nav a {
 
 .viper small {
   display: block;
-
   margin-top: 15px;
-
   color: #777;
-
   max-width: 750px;
-
   line-height: 1.5;
 }
 
 .btn-viper {
   background: #ad1726;
-
   padding: 20px 28px;
-
   color: white;
-
   text-decoration: none;
-
   font-weight: bold;
-
   border-radius: 3px;
 }
 
@@ -528,15 +402,12 @@ nav a {
 
 .acceso {
   padding: 70px 0;
-
   background: #202a31;
-
   color: white;
 }
 
 .acceso p {
   margin-top: 15px;
-
   color: #ccc;
 }
 
@@ -547,42 +418,31 @@ nav a {
 
 footer {
   padding: 30px;
-
   text-align: center;
-
   background: #151c21;
-
   border-top: 4px solid #a71927;
-
   color: #aaa;
-
   font-size: 11px;
-
   letter-spacing: 2px;
 }
 
 
 /* ==============================
-   TABLET / CELULAR
+   TABLET
 ================================ */
 
 @media (max-width: 900px) {
 
   .header {
     height: auto;
-
     padding: 25px;
-
     flex-direction: column;
-
     gap: 25px;
   }
 
   nav {
     flex-wrap: wrap;
-
     justify-content: center;
-
     gap: 20px;
   }
 
@@ -596,21 +456,18 @@ footer {
 
   .material-imagen {
     flex-direction: column;
-
     min-height: auto;
-
     padding: 40px 0;
   }
 
   .escudo-grande {
-    width: 230px;
+    width: 220px;
+    max-width: 80%;
   }
 
-  .carros-placeholder div {
-    width: 180px;
-    height: 150px;
-
-    font-size: 40px;
+  .carros-img {
+    width: 100%;
+    max-width: 700px;
   }
 
   .tarjetas {
@@ -619,15 +476,22 @@ footer {
 
   .viper {
     flex-direction: column;
-
     align-items: flex-start;
-
     gap: 30px;
   }
 }
 
 
+/* ==============================
+   CELULAR
+================================ */
+
 @media (max-width: 600px) {
+
+  .marca {
+    flex-direction: column;
+    text-align: center;
+  }
 
   .marca h3 {
     font-size: 14px;
@@ -639,28 +503,56 @@ footer {
 
   nav {
     flex-direction: column;
+    width: 100%;
+  }
+
+  nav a {
+    text-align: center;
+  }
+
+  .btn-acceso {
+    width: 100%;
   }
 
   .hero h1 {
     font-size: 2.5rem;
   }
 
+  .sobrelinea {
+    letter-spacing: 2px;
+  }
+
   .lema {
     font-size: 14px;
-
     padding: 0;
-
     letter-spacing: 2px;
+  }
+
+  .numero-fondo {
+    font-size: 140px;
   }
 
   .material-info {
     flex-direction: column;
-
     gap: 15px;
+    text-align: center;
   }
 
-  .carros-placeholder {
-    flex-direction: column;
+  .material {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
+  .tarjeta {
+    padding: 30px 25px;
+  }
+
+  .viper {
+    padding: 30px 25px;
+  }
+
+  .btn-viper {
+    width: 100%;
+    text-align: center;
+  }
 }
