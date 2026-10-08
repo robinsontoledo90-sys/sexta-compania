@@ -3,65 +3,228 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sexta Compañía Sargento Aldea Nº6</title>
+
+  <title>Compañía Sargento Aldea N6</title>
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-  <header class="portada">
+<!-- BARRA SUPERIOR -->
+<div class="barra-avance">
+  AVANCE PÚBLICO · Inventarios de B6 y RX6 disponibles · Sistema en desarrollo
+</div>
 
-    <img
-      src="escudo.png"
-      alt="Escudo Sexta Compañía"
-      class="escudo"
-    >
+<!-- ENCABEZADO -->
+<header class="header">
 
-    <h1>COMPAÑÍA SARGENTO ALDEA Nº6</h1>
+  <div class="marca">
+    <img src="escudo.png" alt="Escudo Sexta Compañía">
 
-    <p class="lema">
-      ABNEGACIÓN, TRABAJO Y SACRIFICIO
+    <div>
+      <h3>COMPAÑÍA SARGENTO ALDEA N6</h3>
+      <p>BOMBEROS · IQUIQUE · CHILE</p>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#compania">La compañía</a>
+    <a href="#novedades">Novedades</a>
+    <a href="#viper">VIPER</a>
+
+    <a class="btn-acceso" href="#acceso">
+      ACCESO VOLUNTARIOS ↗
+    </a>
+  </nav>
+
+</header>
+
+
+<!-- PORTADA -->
+<section class="hero">
+
+  <div class="numero-fondo">06</div>
+
+  <div class="hero-contenido">
+
+    <p class="sobrelinea">
+      BOMBEROS DE IQUIQUE · SEXTA COMPAÑÍA
     </p>
 
-    <div class="botones">
-      <a href="#guardias" class="btn">GUARDIAS</a>
-      <a href="#inventario" class="btn">INVENTARIO</a>
-      <a href="#viper" class="btn">VIPER ONE</a>
-      <a href="#acceso" class="btn">ACCESO VOLUNTARIOS</a>
+    <h1>
+      COMPAÑÍA<br>
+      SARGENTO ALDEA N6
+    </h1>
+
+    <div class="lema">
+      ABNEGACIÓN, TRABAJO Y SACRIFICIO
     </div>
 
-  </header>
+    <a href="#compania" class="conoce">
+      CONOCE NUESTRA COMPAÑÍA ↓
+    </a>
 
-  <main>
+  </div>
 
-    <section id="guardias">
-      <h2>GUARDIAS</h2>
-      <p>Consulta la guardia del día y la programación mensual.</p>
-    </section>
+</section>
 
-    <section id="inventario">
-      <h2>INVENTARIO</h2>
-      <p>Inventario de los carros B6 y RX6.</p>
-    </section>
 
-    <section id="viper">
-      <h2>VIPER ONE</h2>
-      <p>Acceso a información operativa de la compañía.</p>
-    </section>
+<!-- FRANJA -->
+<div class="franja">
+  <span></span>
+</div>
 
-    <section id="acceso">
-      <h2>ACCESO VOLUNTARIOS</h2>
-      <p>Área interna de la compañía.</p>
-    </section>
 
-  </main>
+<!-- MATERIAL MAYOR -->
+<section class="material">
 
-  <footer>
-    SEXTA COMPAÑÍA SARGENTO ALDEA Nº6 · IQUIQUE · CHILE
-  </footer>
+  <div class="material-imagen">
 
-  <script src="js/app.js"></script>
+    <!-- Más adelante pondremos aquí la imagen de B6 y RX6 -->
+
+    <img class="escudo-grande" src="escudo.png" alt="Escudo">
+
+    <div class="carros-placeholder">
+      <div>B-6</div>
+      <div>RX-6</div>
+    </div>
+
+  </div>
+
+  <div class="material-info">
+
+    <span>MATERIAL MAYOR</span>
+
+    <strong>
+      <b>B6</b>
+      <em>/</em>
+      <b>RX6</b>
+    </strong>
+
+    <span>AL SERVICIO DE LA COMUNIDAD</span>
+
+  </div>
+
+</section>
+
+
+<!-- NUESTRA COMPAÑÍA -->
+<section id="compania" class="compania">
+
+  <div class="contenedor">
+
+    <p class="titulo-rojo">
+      IDENTIDAD · SERVICIO · COMPROMISO
+    </p>
+
+    <h2>NUESTRA COMPAÑÍA</h2>
+
+    <p class="intro">
+      Un espacio para nuestra historia, nuestro material mayor y la vida de la Sexta.
+    </p>
+
+
+    <div class="tarjetas">
+
+      <article class="tarjeta">
+
+        <span>01 / HISTORIA</span>
+
+        <h3>HISTORIA Y TRADICIÓN</h3>
+
+        <p>
+          Espacio reservado para la reseña oficial y los hitos de la compañía.
+        </p>
+
+        <small>Contenido pendiente</small>
+
+      </article>
+
+
+      <article class="tarjeta">
+
+        <span>02 / MATERIAL MAYOR</span>
+
+        <h3>MATERIAL MAYOR</h3>
+
+        <p>
+          Nuestros carros tendrán su propio espacio con fotografías e información institucional.
+        </p>
+
+      </article>
+
+
+      <article id="novedades" class="tarjeta">
+
+        <span>03 / COMUNIDAD</span>
+
+        <h3>VIDA DE COMPAÑÍA</h3>
+
+        <p>
+          Aquí aparecerán las publicaciones autorizadas por el director, capitán o ayudante.
+        </p>
+
+        <small>Sin publicaciones todavía</small>
+
+      </article>
+
+    </div>
+
+
+    <!-- VIPER -->
+    <div id="viper" class="viper">
+
+      <div>
+
+        <span>ACCESO A PLATAFORMA EXTERNA</span>
+
+        <h2>VIPER APP</h2>
+
+        <p>
+          Notificaciones para Emergencia · Aplicación móvil de ExeFire.
+        </p>
+
+        <small>
+          Encuentra la aplicación en Google Play. Para consultar tus emergencias,
+          utiliza VIPER en tu teléfono con tu acceso habitual.
+        </small>
+
+      </div>
+
+      <a href="#" class="btn-viper">
+        VIPER en Google Play ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ACCESO -->
+<section id="acceso" class="acceso">
+
+  <div class="contenedor">
+
+    <h2>ACCESO VOLUNTARIOS</h2>
+
+    <p>
+      Área interna destinada a los integrantes de la Sexta Compañía.
+    </p>
+
+  </div>
+
+</section>
+
+
+<footer>
+  COMPAÑÍA SARGENTO ALDEA N6 · IQUIQUE · CHILE
+</footer>
+
+
+<script src="js/app.js"></script>
 
 </body>
 </html>
