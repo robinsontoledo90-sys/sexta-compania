@@ -917,3 +917,17 @@ footer {
  .inicio-institucional .hero-boton { width:100%; }
  .inicio-institucional .hero-botones { margin-bottom:23px; }
 }
+
+
+/* Galería fotográfica bomberil formal, visible solo con fotos cargadas */
+.inicio-institucional .galeria-sexta { padding:68px 6%; background:#fff; border-top:5px solid #c8a96b; }
+.inicio-institucional .galeria-sexta[hidden], .inicio-institucional .galeria-sexta figure[hidden] { display:none!important; }
+.inicio-institucional .galeria-wrap { max-width:1370px; margin:auto; }
+.inicio-institucional .galeria-wrap h2 { font-size:clamp(28px,4vw,46px); color:#8f1017; margin:10px 0; }
+.inicio-institucional .galeria-intro { color:#70575a; line-height:1.6; margin-bottom:28px; }
+.inicio-institucional .galeria-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:19px; }
+.inicio-institucional .galeria-grid figure { overflow:hidden; background:#fff7f4; margin:0; border-bottom:4px solid #ac1826; box-shadow:0 5px 18px #8b20201a; }
+.inicio-institucional .galeria-grid img { display:block; width:100%; height:350px; object-fit:cover; }
+.inicio-institucional .galeria-grid figcaption { color:#8f1017; padding:17px 15px; font-size:12px; font-weight:900; letter-spacing:.05em; }
+@media(max-width:900px) {.inicio-institucional .galeria-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }}
+@media(max-width:600px) {.inicio-institucional .galeria-sexta {padding:42px 5%;}.inicio-institucional .galeria-grid {grid-template-columns:1fr;}.inicio-institucional .galeria-grid img{height:290px;}}
