@@ -57,13 +57,13 @@ begin
  nombre := coalesce(perfil.nombre,perfil.cargo);
  if p_action='inicio' then
    select coalesce(jsonb_agg(x order by x.fecha desc),'[]'::jsonb) into result from (
-     select a.id,a.titulo,a.tipo,a.fecha,a.encargado,a.cerrada_en,a.version,
+     select evt.id,evt.titulo,evt.tipo,evt.fecha,evt.encargado,evt.cerrada_en,evt.version,
        coalesce(v.nombre,v.cargo) as encargado_nombre,
        r.estado as mi_estado
-     from asistencia_privada.actividades a
-     join public.voluntarios_autorizados v on v.user_id=a.encargado
-     left join asistencia_privada.registros r on r.actividad=a.id and r.voluntario=u
-     order by a.fecha desc limit 200
+     from asistencia_privada.actividades evt
+     join public.voluntarios_autorizados v on v.user_id=evt.encargado
+     left join asistencia_privada.registros r on r.actividad=evt.id and r.voluntario=u
+     order by evt.fecha desc limit 200
    ) x;
    return jsonb_build_object('usuario',u,'nombre',nombre,'cargo',perfil.cargo,'mando',mando,'actividades',result);
  end if;

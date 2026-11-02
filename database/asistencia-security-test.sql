@@ -23,6 +23,10 @@ begin
  perform set_config('request.jwt.claim.sub',cap,true);
  a:=public.asistencia_api('crear',jsonb_build_object('titulo','PRUEBA TRANSACCIONAL','tipo','EJERCICIO','fecha',now(),'encargado',enc));
  aid:=a->>'id';
+ d:=public.asistencia_api('inicio');
+ if jsonb_array_length(d->'actividades')<>1 or not (d->>'mando')::boolean then raise exception 'TEST FAIL: inicio'; end if;
+ d:=public.asistencia_api('personas');
+ if jsonb_array_length(d)<4 then raise exception 'TEST FAIL: padrón'; end if;
  b:=public.asistencia_api('crear',jsonb_build_object('titulo','OTRA ACTIVIDAD','tipo','REUNIÓN','fecha',now(),'encargado',cap));
  perform set_config('request.jwt.claim.sub',vol,true);
  begin
