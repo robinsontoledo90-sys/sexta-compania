@@ -885,3 +885,35 @@ footer {
  .inicio-institucional .material-imagen { gap:18px; }
  .inicio-institucional .escudo-grande { width:170px; max-width:65%; }
 }
+
+
+/* PORTADA BOMBERIL FORMAL · SEGUNDA ETAPA · ESPECÍFICO DE INICIO */
+.inicio-institucional .hero { padding-top:36px; padding-bottom:0; min-height:0; }
+.inicio-institucional .hero-escudo { width:min(180px,35vw); padding:0; margin-bottom:12px; }
+.inicio-institucional .hero-escudo img { max-height:180px; mix-blend-mode:multiply; }
+.inicio-institucional .hero-contenido { width:100%; }
+.inicio-institucional .hero h1 { font-size:clamp(36px,5vw,68px); }
+.inicio-institucional .lema { margin:23px auto; }
+.inicio-institucional .hero-botones { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-bottom:35px; }
+.inicio-institucional .hero-boton { display:inline-flex; align-items:center; justify-content:center; min-height:47px; padding:13px 22px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:900; letter-spacing:.07em; transition:background .2s ease,transform .2s ease; }
+.inicio-institucional .hero-boton:hover { transform:translateY(-2px); }
+.inicio-institucional .hero-boton-principal { background:#a9101b; color:white; border:2px solid #a9101b; }
+.inicio-institucional .hero-boton-secundario { background:#fff; color:#8f1017; border:2px solid #ad7b80; }
+.inicio-institucional .hero-carros { position:relative; z-index:2; width:min(1180px,100%); margin:0 auto; background:#fff; border-top:5px solid #b5121b; border-left:1px solid #e7d2d0; border-right:1px solid #e7d2d0; box-shadow:0 0 25px rgba(124,31,33,.07); padding:22px 25px 14px; }
+.inicio-institucional .hero-carros-titulo { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid #ebd9d2; padding-bottom:14px; color:#7a2830; font-size:12px; font-weight:800; letter-spacing:.09em; }
+.inicio-institucional .hero-carros-titulo strong { color:#a9101b; font-size:18px; }
+.inicio-institucional .hero-carros img { width:100%; max-height:400px; object-fit:contain; display:block; margin:auto; }
+.inicio-institucional .material { padding-top:45px; }
+.inicio-institucional .material-info { border-top:3px solid #b5121b; }
+.inicio-institucional .material-info strong { font-size:32px; }
+.inicio-institucional .tarjeta h3 { color:#90202a; }
+.inicio-institucional .tarjeta::after { content:""; width:44px; height:4px; display:block; background:#c8a96b; margin-top:25px; }
+@media(max-width:600px){
+ .inicio-institucional .hero { padding:28px 4% 0; }
+ .inicio-institucional .hero-escudo { width:145px; }
+ .inicio-institucional .hero-carros { padding:16px 12px 8px; }
+ .inicio-institucional .hero-carros-titulo strong { font-size:15px; }
+ .inicio-institucional .hero-carros img { max-height:260px; }
+ .inicio-institucional .hero-boton { width:100%; }
+ .inicio-institucional .hero-botones { margin-bottom:23px; }
+}
