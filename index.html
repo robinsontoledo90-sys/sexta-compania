@@ -6,7 +6,7 @@
 
   <title>Sexta Compañía Sargento Aldea Nº6 | Bomberos de Iquique</title>
 
-  <link rel="stylesheet" href="css/style.css?v=20261102-formal-v2">
+  <link rel="stylesheet" href="css/style.css?v=20261102-galeria-v3">
 </head>
 
 <body class="inicio-institucional">
@@ -67,7 +67,7 @@
 
   </div>
 
-  <div class="hero-carros" aria-label="Material mayor de la compañía"><div class="hero-carros-titulo"><span>SEXTA COMPAÑÍA · IQUIQUE</span><strong>MATERIAL MAYOR B6 / RX6</strong></div><img src="carros.png" alt="Carros B6 y RX6 de la Sexta Compañía" loading="eager"></div>
+  <div id="material-mayor" class="hero-carros" aria-label="Material mayor de la compañía"><div class="hero-carros-titulo"><span>SEXTA COMPAÑÍA · IQUIQUE</span><strong>MATERIAL MAYOR B6 / RX6</strong></div><img src="carros.png" alt="Carros B6 y RX6 de la Sexta Compañía" loading="eager"></div>
 
 </section>
 
@@ -77,6 +77,21 @@
   <span></span>
 </div>
 
+
+
+<!-- GALERÍA FOTOGRÁFICA: se activa automáticamente cuando existan las fotos en el repositorio -->
+<section id="galeria-sexta" class="galeria-sexta" hidden aria-labelledby="galeria-titulo">
+  <div class="galeria-wrap">
+    <p class="titulo-rojo">SERVICIO · TECNOLOGÍA · PREPARACIÓN</p>
+    <h2 id="galeria-titulo">LA SEXTA EN ACCIÓN</h2>
+    <p class="galeria-intro">Imágenes de nuestras actividades, trabajo operativo y recursos tecnológicos.</p>
+    <div class="galeria-grid">
+      <figure hidden><img src="sexta-foto-1.jpg" alt="Despliegue tecnológico y equipo de apoyo de la Sexta Compañía" loading="lazy" onload="this.parentElement.hidden=false;document.getElementById('galeria-sexta').hidden=false" onerror="this.parentElement.remove()"><figcaption>TECNOLOGÍA Y APOYO OPERATIVO</figcaption></figure>
+      <figure hidden><img src="sexta-foto-2.jpg" alt="Bomberos trabajando en una emergencia de incendio" loading="lazy" onload="this.parentElement.hidden=false;document.getElementById('galeria-sexta').hidden=false" onerror="this.parentElement.remove()"><figcaption>RESPUESTA ANTE EMERGENCIAS</figcaption></figure>
+      <figure hidden><img src="sexta-foto-3.jpg" alt="Dron de apoyo tecnológico en vuelo" loading="lazy" onload="this.parentElement.hidden=false;document.getElementById('galeria-sexta').hidden=false" onerror="this.parentElement.remove()"><figcaption>INNOVACIÓN Y RECURSOS TECNOLÓGICOS</figcaption></figure>
+    </div>
+  </div>
+</section>
 
 <!-- NUESTRA COMPAÑÍA -->
 <section id="compania" class="compania">
