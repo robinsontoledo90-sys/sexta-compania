@@ -3,8 +3,9 @@ main{min-height:72vh;background:#eff0f2;padding:42px 5%}.wrap{max-width:1150px;m
 </style></head><body>
 <div class="barra-avance">COMPAÑÍA SARGENTO ALDEA N6 · ACCESO VOLUNTARIOS</div><header class="header"><div class="marca"><img src="escudo-transparente.png?v=completo-2" alt="Escudo Sexta Compañía"><div><h3>COMPAÑÍA SARGENTO ALDEA N6</h3><p>BOMBEROS · IQUIQUE · CHILE</p></div></div><nav><a href="index.html">Inicio</a><a href="guardias.html">Guardias</a><a href="inventario.html">Inventarios</a></nav></header>
 <main><div class="wrap"><div class="eyebrow">PLATAFORMA INSTITUCIONAL · ACCESO RESTRINGIDO</div><h1 class="heading">ACCESO VOLUNTARIOS</h1><p>Ingresa con tu cuenta autorizada de la Sexta Compañía. Las opciones se muestran según tus permisos.</p>
-<section class="panel" id="loginPanel"><h2>INICIAR SESIÓN</h2><form id="loginForm" class="fields"><input type="email" id="email" aria-label="Correo electrónico" placeholder="Correo electrónico" autocomplete="username" required><input type="password" id="password" aria-label="Contraseña" placeholder="Contraseña" autocomplete="current-password" required><button class="btn">INGRESAR</button></form></section>
+<section class="panel" id="loginPanel"><h2>INICIAR SESIÓN</h2><form id="loginForm" class="fields"><input type="email" id="email" aria-label="Correo electrónico" placeholder="Correo electrónico" autocomplete="username" required><input type="password" id="password" aria-label="Contraseña" placeholder="Contraseña" autocomplete="current-password" required><button class="btn">INGRESAR</button></form><p><button class="btn" type="button" id="recover">OLVIDÉ MI CONTRASEÑA</button></p><p class="hint">Escribe tu correo arriba y pulsa este botón para recibir un enlace de recuperación.</p></section>
 <section class="panel hide" id="sessionPanel"><h2 id="welcome"></h2><p id="cargo"></p><button class="btn" id="logout">CERRAR SESIÓN</button></section>
+<section class="panel hide" id="recoveryPanel"><h2>CREAR CONTRASEÑA NUEVA</h2><p>Elige una contraseña de al menos 12 caracteres.</p><form id="recoveryForm" class="fields"><input id="newPassword" type="password" aria-label="Nueva contraseña" placeholder="Nueva contraseña" autocomplete="new-password" minlength="12" required><input id="confirmPassword" type="password" aria-label="Repetir contraseña" placeholder="Repetir contraseña" autocomplete="new-password" minlength="12" required><button class="btn">GUARDAR CONTRASEÑA</button></form><p id="recoveryStatus" role="status"></p></section>
 <p id="status" role="status">Comprobando sesión…</p>
 <div id="modules" class="cards hide">
 <a class="tile" href="b6.html"><h2>INVENTARIO B6</h2><p>Consulta del material mayor y edición autorizada.</p></a>
@@ -17,7 +18,10 @@ main{min-height:72vh;background:#eff0f2;padding:42px 5%}.wrap{max-width:1150px;m
 <script>
 const db=window.supabase?.createClient("https://qktxtrlfyewmlgcqrkiz.supabase.co","sb_publishable_JwJ0LvGvRrEtXu--hTCnaQ_3ILqpLmD");
 const $=id=>document.getElementById(id);const show=(id,on)=>$(id).classList.toggle("hide",!on);
+let recovering=new URLSearchParams(location.hash.slice(1)).get("type")==="recovery";
+function recoveryView(){show("loginPanel",false);show("sessionPanel",false);show("modules",false);show("recoveryPanel",true);$("status").textContent="Elige tu nueva contraseña.";}
 async function load(){
+if(recovering){recoveryView();return;}
 if(!db){$("status").textContent="No se pudo cargar la conexión. Actualiza la página.";return;}
 const {data:{user},error}=await db.auth.getUser();
 if(error||!user){show("loginPanel",true);show("sessionPanel",false);show("modules",false);$("status").textContent="Inicia sesión para acceder.";return;}
@@ -60,7 +64,35 @@ $("logout").addEventListener("click",async()=>{
   finally{$("logout").disabled=false;}
 });
 if(db)db.auth.onAuthStateChange(event=>{
+  if(event==="PASSWORD_RECOVERY"){recovering=true;recoveryView();}
   if(event==="SIGNED_OUT"){show("modules",false);show("sessionPanel",false);show("loginPanel",true);$("status").textContent="Sesión cerrada.";}
+});
+
+$("recover").addEventListener("click",async()=>{
+ if(!db){$("status").textContent="Servicio no disponible. Actualiza la página.";return;}
+ if(!$("email").reportValidity())return;
+ $("recover").disabled=true;
+ try{
+  const {error}=await db.auth.resetPasswordForEmail($("email").value.trim(),{redirectTo:location.origin+location.pathname});
+  if(error)throw error;
+  $("status").textContent="Solicitud enviada. Revisa tu correo y la carpeta de spam para abrir el enlace de recuperación.";
+ }catch(error){$("status").textContent="No se pudo enviar el enlace. Espera un minuto e inténtalo de nuevo.";}
+ finally{$("recover").disabled=false;}
+});
+$("recoveryForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!db)return;
+ if($("newPassword").value!==$("confirmPassword").value){$("recoveryStatus").textContent="Las contraseñas no coinciden.";return;}
+ const button=e.currentTarget.querySelector("button");button.disabled=true;
+ try{
+  const {error}=await db.auth.updateUser({password:$("newPassword").value});
+  if(error)throw error;
+  $("newPassword").value="";$("confirmPassword").value="";
+  recovering=false;show("recoveryPanel",false);
+  history.replaceState(null,"",location.pathname);
+  await refreshAccess();$("status").textContent="Contraseña actualizada. Ya puedes utilizar tu cuenta.";
+ }catch(error){$("recoveryStatus").textContent="No se pudo actualizar. Comprueba que el enlace siga vigente y usa una contraseña nueva de al menos 12 caracteres.";}
+ finally{button.disabled=false;}
 });
 refreshAccess();
 </script></body></html>
