@@ -74,8 +74,14 @@ begin
    return result;
  end if;
  if p_action='crear' then
-   if not mando then raise exception 'Solo capitán y tenientes pueden crear actividades.' using errcode='42501'; end if;
-   target := (p_data->>'encargado')::uuid;
+   if mando then
+     target := (p_data->>'encargado')::uuid;
+   else
+     if (p_data->>'tipo') is distinct from 'EMERGENCIA' then
+       raise exception 'Solo capitán y tenientes pueden crear otros tipos de actividad.' using errcode='42501';
+     end if;
+     target := u;
+   end if;
    if not exists(select 1 from public.voluntarios_autorizados where user_id=target and habilitado) then
      raise exception 'El encargado debe tener una cuenta habilitada.';
    end if;
