@@ -18,15 +18,20 @@ async function load(){
  const next=await api('inicio');session=next;
  $('login').hidden=true;$('app').hidden=false;
  $('identity').textContent=session.nombre+' · '+session.cargo;
- $('showCreate').hidden=!session.mando;
- $('scope').textContent=session.mando?'Puedes crear actividades, designar encargados y corregir listas cerradas con un motivo. Otro responsable debe validar tu asistencia.':'Puedes consultar tu estado. Si el capitán o un teniente te designa encargado, podrás pasar lista en esa actividad.';
+ $('showCreate').hidden=false;
+ $('showCreate').textContent=session.mando?'Nueva actividad':'Registrar emergencia';
+ $('type').disabled=!session.mando;
+ if(!session.mando)$('type').value='EMERGENCIA';
+ $('owner').disabled=!session.mando;
+ $('owner').closest('label').hidden=!session.mando;
+ $('scope').textContent=session.mando?'Puedes crear actividades, designar encargados y corregir listas cerradas con un motivo. Otro responsable debe validar tu asistencia.':'Puedes registrar una emergencia y quedarás como encargado inicial. Otro responsable debe validar tu asistencia.';
  if(!session.mando)$('createPanel').hidden=true;
  if(session.mando){roster=await api('personas');owners($('owner'));owners($('replacement'));}
  renderActivities();message('Acceso verificado.');
 }
 function renderActivities(){
  const host=$('activities');host.replaceChildren();
- if(!session.actividades.length){host.append(text('p','Todavía no hay actividades registradas. El capitán o un teniente debe crear la primera.','empty'));return;}
+ if(!session.actividades.length){host.append(text('p','Todavía no hay actividades registradas. Usa el botón de arriba para registrar una emergencia.','empty'));return;}
  for(const a of session.actividades){
   const card=text('article','','panel activity');
   card.append(text('span',a.tipo+' · '+(a.cerrada_en?'CERRADA':'ABIERTA'),'badge'),text('h3',a.titulo),text('p',dateText(a.fecha),'muted'),text('p','Encargado: '+a.encargado_nombre,'muted'),text('p','Tu estado: '+(a.mi_estado||'Sin registrar'),'muted'));
@@ -102,7 +107,7 @@ $('reason').oninput=()=>$('reason').setCustomValidity('');
 $('refresh').onclick=()=>run(async()=>{$('detail').hidden=true;detail=null;await load();});
 $('showCreate').onclick=()=>{$('createPanel').hidden=!$('createPanel').hidden;};
 $('createForm').onsubmit=e=>{e.preventDefault();run(async()=>{
- const a=await api('crear',{titulo:$('title').value.trim(),tipo:$('type').value,fecha:new Date($('date').value).toISOString(),encargado:$('owner').value});
+ const a=await api('crear',{titulo:$('title').value.trim(),tipo:$('type').value,fecha:new Date($('date').value).toISOString(),encargado:session.mando?$('owner').value:session.usuario});
  $('createForm').reset();$('createPanel').hidden=true;
  try{await load();await openDetail(a.id);message('Actividad creada.');}catch(error){message('Actividad creada. Actualiza la página para verla.',true);}
 });};
@@ -112,3 +117,4 @@ $('reloadDetail').onclick=()=>run(()=>openDetail(detail.actividad.id));
 $('search').oninput=()=>{if(detail)renderPeople();};
 if(db){db.auth.onAuthStateChange(event=>{if(event==='SIGNED_OUT'){$('app').hidden=true;$('detail').hidden=true;$('login').hidden=false;$('confirmDialog').close();session=null;detail=null;pending=null;message('Sesión cerrada.');}});run(load);}
 else message('No se pudo cargar el servicio. Actualiza la página.',true);
+
