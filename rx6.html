@@ -49,6 +49,7 @@
   .filters{grid-template-columns:1fr}
 }
 </style>
+<style>body:not(.inventario-autorizado){display:none!important}</style>
 </head>
 
 <body>
@@ -921,24 +922,25 @@ document.getElementById("voluntarioLogout").addEventListener("click",async()=>{
 });
 if(db)db.auth.onAuthStateChange(event=>{
  if(event==="SIGNED_OUT"){
+  document.body.classList.remove("inventario-autorizado");
   cloudUser=null;puedeEditar=false;
-  data.forEach((r,i)=>{r.estado=BASE_DATA[i].estado||"SIN REVISAR";r.observacion=BASE_DATA[i].observacion||"";});
-  document.getElementById("voluntarioForm").hidden=false;
-  document.getElementById("voluntarioLogout").hidden=true;
-  mensajeNube("Sesión cerrada. Se muestra el inventario base, sin sincronización.");
-  render();
+  location.replace("acceso.html");
  }
 });
 (async()=>{
-  if(!db){mensajeNube("No se pudo cargar Supabase. Consulta disponible en modo local.");return;}
+  if(!db){location.replace("acceso.html");return;}
   const {data:session}=await db.auth.getUser();
-  if(session?.user){
+  if(!session?.user){location.replace("acceso.html");return;}
+  const {data:perfil,error}=await db.from("voluntarios_autorizados").select("habilitado").eq("user_id",session.user.id).maybeSingle();
+  if(error || !perfil?.habilitado){location.replace("acceso.html");return;}
+  {
     cloudUser=session.user;
     document.getElementById("voluntarioForm").hidden=true;
     document.getElementById("voluntarioLogout").hidden=false;
     await consultarNube();
+    if(cloudUser)document.body.classList.add("inventario-autorizado");
   }
-})();
+})().catch(()=>location.replace("acceso.html"));
 
 render();
 </script>
