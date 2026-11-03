@@ -1,4 +1,3 @@
-
 -- Attendance data is private; only the validated API can read or write it.
 create schema if not exists asistencia_privada;
 revoke all on schema asistencia_privada from public, anon, authenticated;
@@ -77,7 +76,7 @@ begin
    if mando then
      target := (p_data->>'encargado')::uuid;
    else
-     if (p_data->>'tipo') is distinct from 'EMERGENCIA' then
+     if coalesce(p_data->>'tipo','') not in ('EMERGENCIA','EJERCICIO') then
        raise exception 'Solo capitán y tenientes pueden crear otros tipos de actividad.' using errcode='42501';
      end if;
      target := u;
