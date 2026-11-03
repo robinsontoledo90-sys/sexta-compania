@@ -249,4 +249,66 @@ Consulta informaci√≥n institucional desde los apartados habilitados de la compa√
 .inicio-institucional :is(.tarjeta,.viper,.hero-carros) { box-shadow: none; }
 .inicio-institucional #galeria-sexta .accion-cabecera { border-color: #405471; }
 </style>
+<style>
+.inicio-institucional .barra-avance {
+  padding: 9px 5%;
+  border-bottom: 1px solid #ffffff24;
+  color: #cdd9ec;
+  letter-spacing: .12em;
+}
+.inicio-institucional .header {
+  padding: 16px max(5%, calc((100% - 1240px)/2));
+  border-bottom: 1px solid #ffffff28;
+  box-shadow: none;
+}
+.inicio-institucional .marca img { width: 64px; }
+.inicio-institucional .hero {
+  background: radial-gradient(ellipse at 50% 8%, #214166 0%, #0b1c36 64%);
+  padding-top: clamp(44px, 7vw, 96px);
+}
+.inicio-institucional .hero-escudo { width: min(226px, 46vw); margin-bottom: 24px; }
+.inicio-institucional .hero-escudo img { max-height: 218px; filter: drop-shadow(0 12px 18px #0006); }
+.inicio-institucional .hero h1 { letter-spacing: -.035em; }
+.inicio-institucional .hero h1 span { color: #dce7f9; }
+.inicio-institucional .hero .sobrelinea { color: #f5d39b; }
+.inicio-institucional .hero .lema {
+  background: transparent;
+  border-bottom: 1px solid #f5d39b70;
+  color: #f5d39b;
+  margin: 16px auto 24px;
+}
+.inicio-institucional .hero-carros {
+  width: min(1100px,100%);
+  border: 1px solid #405471;
+  border-radius: 12px 12px 0 0;
+  padding: 18px clamp(16px,3vw,32px);
+}
+.inicio-institucional .hero-carros-titulo { border-color: #405471; }
+.inicio-institucional #galeria-sexta,
+.inicio-institucional .compania { padding-block: clamp(44px,7vw,90px); }
+.inicio-institucional #galeria-sexta .galeria-grid {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: clamp(14px,2.5vw,28px);
+}
+.inicio-institucional #galeria-sexta figure {
+  min-height: clamp(290px,38vw,470px);
+  border: 1px solid #ffffff2b;
+  border-radius: 12px;
+}
+.inicio-institucional .tarjetas { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.inicio-institucional :is(.tarjeta,.viper) {
+  background: #112644;
+  border: 1px solid #405471;
+  border-radius: 12px;
+  padding: clamp(20px,3vw,34px);
+}
+.inicio-institucional .viper a:hover,
+.inicio-institucional .header nav a:not(.btn-acceso):hover { color: #f5d39b; }
+.inicio-institucional a:focus-visible { outline: 2px solid #f5d39b; outline-offset: 4px; }
+.inicio-institucional footer { border-top: 1px solid #405471; }
+@media (max-width: 650px) {
+  .inicio-institucional #galeria-sexta .galeria-grid,
+  .inicio-institucional .tarjetas { grid-template-columns: 1fr; }
+}
+</style>
 </body></html>
