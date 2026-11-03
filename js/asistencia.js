@@ -1,6 +1,7 @@
 'use strict';
 const db=window.supabase?.createClient('https://qktxtrlfyewmlgcqrkiz.supabase.co','sb_publishable_JwJ0LvGvRrEtXu--hTCnaQ_3ILqpLmD');
 const $=id=>document.getElementById(id);
+const puedeDescargarExcel=()=>['CAPITÁN','TENIENTE PRIMERO','AYUDANTE'].includes(session?.cargo);
 let session=null,detail=null,roster=[],busy=false,pending=null;
 const dateText=value=>new Date(value).toLocaleString('es-CL',{dateStyle:'medium',timeStyle:'short'});
 function text(tag,value,cls){const e=document.createElement(tag);e.textContent=value;if(cls)e.className=cls;return e;}
@@ -42,6 +43,7 @@ function renderActivities(){
 }
 async function openDetail(id){
  const next=await api('detalle',{actividad:id});detail=next;
+ $('downloadList').hidden=!puedeDescargarExcel();
  $('detail').hidden=false;$('detailTitle').textContent=detail.actividad.titulo;
  $('detailType').textContent=detail.actividad.tipo==='EJERCICIO'?'ACADEMIA':detail.actividad.tipo;
  $('detailDate').textContent=dateText(detail.actividad.fecha);
@@ -115,7 +117,7 @@ $('createForm').onsubmit=e=>{e.preventDefault();run(async()=>{
 $('assign').onclick=()=>confirmAction('Cambiar encargado','El encargado anterior perderá el permiso para pasar lista en esta actividad.',{action:'designar',data:{encargado:$('replacement').value}});
 $('closeList').onclick=()=>confirmAction('Cerrar lista','Los registros pendientes seguirán como “Sin registrar”. Después del cierre, solo capitán y tenientes podrán corregir la lista con un motivo.',{action:'cerrar',data:{}});
 $('downloadList').onclick=()=>{
- if(!detail)return;
+ if(!detail||!puedeDescargarExcel())return;
  const xlsx=window.XLSX;
  if(!xlsx){message('No se pudo cargar la descarga de Excel. Recarga la página e inténtalo de nuevo.',true);return;}
  const {actividad,personas}=detail;
