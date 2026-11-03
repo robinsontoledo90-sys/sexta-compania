@@ -114,6 +114,25 @@ $('createForm').onsubmit=e=>{e.preventDefault();run(async()=>{
 });};
 $('assign').onclick=()=>confirmAction('Cambiar encargado','El encargado anterior perderá el permiso para pasar lista en esta actividad.',{action:'designar',data:{encargado:$('replacement').value}});
 $('closeList').onclick=()=>confirmAction('Cerrar lista','Los registros pendientes seguirán como “Sin registrar”. Después del cierre, solo capitán y tenientes podrán corregir la lista con un motivo.',{action:'cerrar',data:{}});
+$('downloadList').onclick=()=>{
+ if(!detail)return;
+ const xlsx=window.XLSX;
+ if(!xlsx){message('No se pudo cargar la descarga de Excel. Recarga la página e inténtalo de nuevo.',true);return;}
+ const {actividad,personas}=detail;
+ const rows=[
+  ['Actividad',actividad.titulo],
+  ['Tipo',actividad.tipo==='EJERCICIO'?'ACADEMIA':actividad.tipo],
+  ['Fecha',dateText(actividad.fecha)],
+  [],
+  ['Nombre','Cargo o grado','Asistencia'],
+  ...personas.map(p=>[p.nombre,p.cargo,p.estado||'SIN REGISTRAR'])
+ ];
+ const sheet=xlsx.utils.aoa_to_sheet(rows);
+ sheet['!cols']=[{wch:42},{wch:27},{wch:20}];
+ const book=xlsx.utils.book_new();
+ xlsx.utils.book_append_sheet(book,sheet,'Asistencia');
+ xlsx.writeFile(book,`asistencia-${actividad.fecha.slice(0,10)}-${actividad.id.slice(0,8)}.xlsx`);
+};
 $('reloadDetail').onclick=()=>run(()=>openDetail(detail.actividad.id));
 $('search').oninput=()=>{if(detail)renderPeople();};
 if(db){db.auth.onAuthStateChange(event=>{if(event==='SIGNED_OUT'){$('app').hidden=true;$('detail').hidden=true;$('login').hidden=false;$('confirmDialog').close();session=null;detail=null;pending=null;message('Sesión cerrada.');}});run(load);}
