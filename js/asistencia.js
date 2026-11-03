@@ -19,19 +19,20 @@ async function load(){
  $('login').hidden=true;$('app').hidden=false;
  $('identity').textContent=session.nombre+' · '+session.cargo;
  $('showCreate').hidden=false;
- $('showCreate').textContent=session.mando?'Nueva actividad':'Registrar emergencia';
- $('type').disabled=!session.mando;
- if(!session.mando)$('type').value='EMERGENCIA';
+ $('showCreate').textContent=session.mando?'Nueva actividad':'Registrar emergencia o academia';
+ for(const option of $('type').options){
+  option.hidden=option.disabled=!session.mando&&!['EMERGENCIA','EJERCICIO'].includes(option.value);
+ }
  $('owner').disabled=!session.mando;
  $('owner').closest('label').hidden=!session.mando;
- $('scope').textContent=session.mando?'Puedes crear actividades, designar encargados y corregir listas cerradas con un motivo. Otro responsable debe validar tu asistencia.':'Puedes registrar una emergencia y quedarás como encargado inicial. Otro responsable debe validar tu asistencia.';
+ $('scope').textContent=session.mando?'Puedes crear actividades, designar encargados y corregir listas cerradas con un motivo. Otro responsable debe validar tu asistencia.':'Puedes registrar una emergencia o academia y quedarás como encargado inicial. Otro responsable debe validar tu asistencia.';
  if(!session.mando)$('createPanel').hidden=true;
  if(session.mando){roster=await api('personas');owners($('owner'));owners($('replacement'));}
  renderActivities();message('Acceso verificado.');
 }
 function renderActivities(){
  const host=$('activities');host.replaceChildren();
- if(!session.actividades.length){host.append(text('p','Todavía no hay actividades registradas. Usa el botón de arriba para registrar una emergencia.','empty'));return;}
+ if(!session.actividades.length){host.append(text('p','Todavía no hay actividades registradas. Usa el botón de arriba para registrar una emergencia o academia.','empty'));return;}
  for(const a of session.actividades){
   const card=text('article','','panel activity');
   card.append(text('span',a.tipo+' · '+(a.cerrada_en?'CERRADA':'ABIERTA'),'badge'),text('h3',a.titulo),text('p',dateText(a.fecha),'muted'),text('p','Encargado: '+a.encargado_nombre,'muted'),text('p','Tu estado: '+(a.mi_estado||'Sin registrar'),'muted'));
@@ -42,7 +43,7 @@ function renderActivities(){
 async function openDetail(id){
  const next=await api('detalle',{actividad:id});detail=next;
  $('detail').hidden=false;$('detailTitle').textContent=detail.actividad.titulo;
- $('detailType').textContent=detail.actividad.tipo;
+ $('detailType').textContent=detail.actividad.tipo==='EJERCICIO'?'ACADEMIA':detail.actividad.tipo;
  $('detailDate').textContent=dateText(detail.actividad.fecha);
  const closed=!!detail.actividad.cerrada_en;
  $('detailState').textContent=closed?'Lista cerrada el '+dateText(detail.actividad.cerrada_en)+'. Solo capitán y tenientes pueden corregirla con un motivo.':'Lista abierta. Marca únicamente a las personas cuya asistencia verificaste. Tu fila requiere validación de otro responsable.';
@@ -117,4 +118,3 @@ $('reloadDetail').onclick=()=>run(()=>openDetail(detail.actividad.id));
 $('search').oninput=()=>{if(detail)renderPeople();};
 if(db){db.auth.onAuthStateChange(event=>{if(event==='SIGNED_OUT'){$('app').hidden=true;$('detail').hidden=true;$('login').hidden=false;$('confirmDialog').close();session=null;detail=null;pending=null;message('Sesión cerrada.');}});run(load);}
 else message('No se pudo cargar el servicio. Actualiza la página.',true);
-
