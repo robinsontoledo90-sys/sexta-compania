@@ -4,6 +4,33 @@
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f3f1ef;color:#242b31;font-family:Arial,sans-serif}.top{border-bottom:4px solid #ac1424;background:white;padding:18px max(5%,calc((100% - 1120px)/2));display:flex;align-items:center;gap:16px}.top img{width:48px;height:58px;object-fit:contain}.top a{margin-left:auto;color:#a01424;font-weight:bold}.top strong{display:block;font-size:15px}.top small{font-size:11px;letter-spacing:2px}main{max-width:1120px;margin:auto;padding:40px 20px 70px}.kicker{color:#a01424;letter-spacing:2px;font-size:12px;font-weight:bold}h1{font-size:clamp(30px,5vw,46px);margin:10px 0}h2{font-size:22px}h3{font-size:17px}.intro{max-width:760px;line-height:1.6;color:#59616a}.panel{background:white;padding:24px;border:1px solid #dedbd7;border-radius:10px;margin-top:20px}.notice{background:#fff6df;padding:16px;border-left:4px solid #bb892e;line-height:1.6}.muted{color:#626972;font-size:14px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}.activity{display:flex;flex-direction:column;gap:8px}.activity h3{margin:0}.activity button{align-self:start;margin-top:auto}.badge{font-size:11px;letter-spacing:1px;font-weight:bold;color:#9d1724}.closed{color:#616972}label{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:bold}input,select,textarea{width:100%;padding:12px;border:1px solid #afb5bb;border-radius:5px;background:#fff;color:#242b31;font:inherit}textarea{min-height:78px}button,.button{padding:12px 17px;border:0;border-radius:5px;background:#a90f20;color:white;font-weight:bold;cursor:pointer;font-size:14px;text-decoration:none;display:inline-block}button.secondary{background:#26353f}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible{outline:3px solid #dbac43;outline-offset:3px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.person{display:grid;grid-template-columns:1.3fr 1fr auto;gap:15px;align-items:center;padding:18px 0;border-top:1px solid #e4e6e8}.person p{margin:5px 0}.person .controls{display:flex;gap:8px}.person select{min-width:150px}.audit{border-top:1px solid #dedbd7;padding:12px 0;font-size:14px;line-height:1.5}.audit p{margin:4px 0}#status{white-space:pre-line;font-weight:bold;line-height:1.5}#status.error{color:#a01424}[hidden]{display:none!important}#detail{scroll-margin-top:20px}.empty{padding:28px;background:#fff;border:1px dashed #bbb;border-radius:8px;margin-top:18px}dialog{border:1px solid #ddd;border-radius:12px;max-width:520px;width:calc(100% - 32px);padding:25px}dialog::backdrop{background:#17252acc}footer{text-align:center;padding:20px;font-size:12px}.summary{display:flex;gap:20px;flex-wrap:wrap;color:#59616a}
 @media(max-width:650px){.top{padding:14px}.top strong{font-size:12px}.top small{font-size:9px}main{padding:28px 16px}.panel{padding:18px}.person{grid-template-columns:1fr}.person .controls{flex-wrap:wrap}.person select{flex:1}.top a{font-size:12px}}
+
+/* Identidad bomberil institucional: renovación visual sin alterar lógica */
+:root{--red:#a30d21;--ink:#26313a;--muted:#5b626b;--line:#e7d9d6;--paper:#f8f4f0}
+body{background:linear-gradient(160deg,#fffaf7 0%,#f5eee9 58%,#fff 100%);color:#29313a}
+header,.top{background:linear-gradient(110deg,#8e0c1e,#b61d2d 68%,#d1443c);color:#fff;border-bottom:5px solid #d5a85b;box-shadow:0 8px 26px #5b101b25}
+header img,.top img{width:66px;height:76px;object-fit:contain;filter:drop-shadow(0 3px 5px #31000955)}
+header strong,.top strong{font-size:18px;letter-spacing:.6px}
+header small,.top small{color:#ffe5c4;letter-spacing:1.5px}
+header a,.top a{color:#fff!important;text-decoration:underline;text-underline-offset:4px}
+main{max-width:1140px}
+h1{color:#921426;letter-spacing:-.8px;line-height:1.1}
+h2{color:#912033}
+.kicker{color:#a31b2d;letter-spacing:2.4px}
+.panel{background:#fff;border:1px solid #eadfda;border-radius:17px;box-shadow:0 12px 32px #5a273014;padding:clamp(20px,3vw,30px)}
+.panel.demo,.demo{background:linear-gradient(110deg,#fff6e9,#fffaf4);border:1px solid #e5c994;border-left:5px solid #bb8d40}
+nav{gap:12px}
+nav button{border-radius:10px;padding:14px 19px;font-weight:750;box-shadow:0 3px 8px #3110160d}
+nav button[aria-current=page]{background:#9c1427;color:#fff;border-color:#9c1427}
+button,.button{border-radius:9px;background:#a41127;box-shadow:0 4px 10px #74112222;transition:transform .15s ease,box-shadow .15s ease}
+button:hover:not(:disabled),.button:hover{transform:translateY(-1px);box-shadow:0 7px 14px #74112230}
+button.secondary{background:#40515b}
+input,select,textarea{border-radius:9px;border-color:#d5c9c6;background:#fffdfa}
+input:focus,select:focus,textarea:focus{outline:2px solid #b32137;outline-offset:1px}
+.person,.record,.request{border-radius:11px;background:#fffdfa;border-color:#eadeda}
+.notice{border-radius:9px;background:#fff7e7}
+footer{border-top:1px solid #e9d8d3}
+@media(max-width:620px){header img,.top img{width:50px;height:60px}header strong,.top strong{font-size:14px}.panel{border-radius:13px}nav button{padding:12px}}
 </style></head><body>
 <header class="top"><img src="escudo-transparente.png?v=completo-2" alt="Escudo Sexta"><div><strong>SEXTA COMPAÑÍA</strong><small>SARGENTO ALDEA · IQUIQUE</small></div><a href="acceso.html">Volver a mi cuenta</a></header>
 <main><p class="kicker">CONTROL DE PARTICIPACIÓN</p><h1>Registro de asistencia</h1>
