@@ -300,4 +300,41 @@ Consulta informaci√≥n institucional desde los apartados habilitados de la compa√
   .inicio-institucional .tarjetas { grid-template-columns: 1fr; }
 }
 </style>
+<style>
+.inicio-institucional :is(.hero-carros,.galeria-wrap,.compania .contenedor) {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+.inicio-institucional :is(.hero,#galeria-sexta,.compania) { padding-inline: 5%; }
+.inicio-institucional .hero-contenido { max-width: 920px; margin-inline: auto; text-align: center; }
+.inicio-institucional .hero h1 { margin-inline: auto; text-wrap: balance; }
+.inicio-institucional .hero-botones > a { min-width: min(100%, 260px); }
+.inicio-institucional #galeria-sexta .accion-cabecera {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: end;
+  gap: 24px;
+  text-align: left;
+}
+.inicio-institucional #galeria-sexta .galeria-intro { max-width: 42ch; }
+.inicio-institucional :is(#galeria-sexta .galeria-grid,.tarjetas) { gap: 24px; }
+.inicio-institucional #galeria-sexta figure figcaption {
+  display: grid;
+  align-content: end;
+  gap: 8px;
+  min-height: 145px;
+  padding: 20px 24px;
+  text-align: left;
+}
+.inicio-institucional #galeria-sexta figcaption :is(h3,p) { margin: 0; }
+.inicio-institucional .compania { text-align: left; }
+.inicio-institucional .compania .intro { max-width: 65ch; margin: 12px 0 28px; }
+.inicio-institucional :is(.tarjeta,.viper) { text-align: left; }
+.inicio-institucional :is(.tarjeta,.viper) :is(h2,h3) { margin: 8px 0 12px; }
+.inicio-institucional :is(.tarjeta,.viper) p { max-width: 65ch; line-height: 1.65; }
+@media (max-width: 650px) {
+  .inicio-institucional #galeria-sexta .accion-cabecera { grid-template-columns: 1fr; gap: 12px; }
+}
+</style>
 </body></html>
