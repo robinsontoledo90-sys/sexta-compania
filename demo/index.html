@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<title>DEMO | Sexta Compañía Sargento Aldea N.º 6</title>
+<link rel="stylesheet" href="demo.css"><script src="demo.js" defer></script>
+</head>
+<body>
+<div class="ribbon">DEMO AISLADA · DATOS FICTICIOS · SIN CONEXIÓN A PRODUCCIÓN</div>
+<header><img src="escudo.png" alt="Escudo de la Sexta Compañía"><div><p class="eyebrow">BOMBEROS DE IQUIQUE</p><strong>SEXTA COMPAÑÍA<br>SARGENTO ALDEA N.º 6</strong><p>Abnegación, trabajo y sacrificio</p></div></header>
+<main>
+<section id="entry"><p class="eyebrow">PRESENTACIÓN INSTITUCIONAL</p><h1>Acceso de prueba</h1><p class="intro">Ingresa con una cuenta ficticia para usar el panel de Oficial o Voluntario. Es una aplicación interactiva: puedes registrar asistencias y cambiar de cuenta durante la presentación.</p>
+<form id="demoLogin" class="card login"><h2>Iniciar sesión de prueba</h2><label for="username">Usuario ficticio</label><input id="username" name="username" autocomplete="off" autocapitalize="none" spellcheck="false" required maxlength="40"><label for="password">Contraseña ficticia</label><input id="password" name="password" type="password" autocomplete="off" required maxlength="80"><button type="submit">Ingresar al panel</button><p id="loginError" role="alert"></p></form>
+<div class="profiles"><article><span class="number">01 / MANDO</span><h2>Cuenta Oficial</h2><p>Usuario: <code>oficial.demo</code><br>Contraseña: <code>OficialDemo6!</code></p><p>Consulta la dotación ficticia y prueba la apertura y el cierre de actividades.</p></article><article><span class="number">02 / DOTACIÓN</span><h2>Cuenta Voluntario</h2><p>Usuario: <code>voluntario.demo</code><br>Contraseña: <code>VoluntarioDemo6!</code></p><p>Consulta actividades y prueba tu propia asistencia a emergencias y academia.</p></article></div><p>Estas claves son públicas y exclusivas de la presentación. No uses tu contraseña real.</p></section>
+<section id="dashboard" hidden><div class="panel-heading"><div><p class="eyebrow">ENTORNO DE DEMOSTRACIÓN</p><h1 id="title"></h1><p id="permissions"></p></div><div class="actions"><button id="switch" class="secondary">Cerrar sesión de prueba</button><button id="reset" class="secondary">Reiniciar demo</button></div></div><div class="notice"><strong>Simulación, sin datos en vivo.</strong> La conexión en tiempo real requiere backend, autenticación y permisos verificados en el servidor. Las acciones solo cambian esta pestaña y se borran al recargar.</div><div id="activities" class="activities"></div><section id="command" class="card" hidden><p class="eyebrow">SOLO OFICIAL · PERMISOS SIMULADOS</p><h2>Resumen de dotación de prueba</h2><p>El voluntario consulta únicamente su propia asistencia. El oficial puede consultar este resumen y abrir o cerrar las actividades ficticias.</p><div class="table-wrap"><table><caption>Identidades ficticias, sin correspondencia con personal real</caption><thead><tr><th>Identidad de prueba</th><th>Emergencias</th><th>Academia</th></tr></thead><tbody id="roster"></tbody></table></div></section></section>
+<p id="message" role="status" aria-live="polite"></p>
+<aside class="limits"><h2>Alcance de esta presentación</h2><p>No se envían alertas, correos ni registros. Las cuentas ficticias ilustran el inicio de sesión y los permisos; no constituyen autenticación ni control de acceso real. No ingreses datos personales ni información operativa.</p></aside>
+</main><footer>SEXTA COMPAÑÍA · IQUIQUE · DEMOSTRACIÓN</footer>
+</body></html>
