@@ -35,3 +35,4 @@ body.demo-institucional{background:#0b1c36;color:#20252a}
 .demo-institucional main p,.demo-institucional main .intro{color:#4c5665}
 .demo-institucional main .eyebrow,.demo-institucional main #message,.demo-institucional main #loginError{color:#991720}
 .demo-institucional main .notice strong{color:#0b1c36}
+#ovacEntry,#ovac{margin:24px 0}.login .declaration{display:flex;align-items:flex-start;gap:12px;line-height:1.6}.login .declaration input{width:20px;min-height:20px;height:20px;flex:0 0 20px;margin-top:3px;accent-color:#a9101b}#ovacResult{overflow-wrap:anywhere}
