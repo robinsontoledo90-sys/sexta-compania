@@ -1,0 +1,933 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  color: #20252a;
+}
+
+
+/* ==============================
+   BARRA SUPERIOR
+================================ */
+
+.barra-avance {
+  background: #e9edf0;
+  border-bottom: 4px solid #a91626;
+  text-align: center;
+  padding: 8px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #777;
+}
+
+
+/* ==============================
+   HEADER
+================================ */
+
+.header {
+  min-height: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 6%;
+  background: white;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.marca img {
+  width: 55px;
+  height: auto;
+}
+
+.marca h3 {
+  font-size: 17px;
+  letter-spacing: .5px;
+}
+
+.marca p {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #888;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+nav a {
+  color: #252525;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.btn-acceso {
+  background: #ad1726;
+  color: white !important;
+  padding: 20px 28px;
+  border-radius: 3px;
+}
+
+
+/* ==============================
+   HERO
+================================ */
+
+.hero {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #18222a,
+      #202a31
+    );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .15;
+
+  background-image:
+    repeating-linear-gradient(
+      130deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,.03) 31px,
+      transparent 32px
+    );
+}
+
+.numero-fondo {
+  position: absolute;
+  right: 6%;
+  top: -20px;
+  font-size: 310px;
+  font-weight: bold;
+  color: rgba(255,255,255,.025);
+}
+
+.hero-contenido {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.sobrelinea {
+  margin-bottom: 22px;
+  color: #d3af75;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.lema {
+  margin: 35px auto;
+  padding: 0 40px;
+  width: fit-content;
+  color: #dfbd82;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.conoce {
+  display: inline-block;
+  margin-top: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.35);
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+
+/* ==============================
+   FRANJA
+================================ */
+
+.franja {
+  height: 5px;
+  background: #a91626;
+  position: relative;
+}
+
+.franja span {
+  position: absolute;
+  right: 26%;
+  width: 60px;
+  height: 5px;
+  background: #d2b37b;
+}
+
+
+/* ==============================
+   MATERIAL MAYOR
+================================ */
+
+.material {
+  background: white;
+  padding: 35px 5% 20px;
+}
+
+.material-imagen {
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  padding: 30px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 45%,
+      rgba(185,0,20,.05) 45% 50%,
+      transparent 50%
+    );
+}
+
+.escudo-grande {
+  width: 290px;
+  max-width: 25%;
+  height: auto;
+}
+
+.carros-img {
+  width: 860px;
+  max-width: 70%;
+  height: auto;
+  display: block;
+}
+
+.material-info {
+  border-top: 1px solid #ddd;
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.material-info span {
+  color: #777;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.material-info strong {
+  font-size: 27px;
+  letter-spacing: 5px;
+}
+
+.material-info strong b {
+  color: #a71927;
+}
+
+.material-info strong em {
+  margin: 0 12px;
+  color: #c5a66c;
+  font-style: normal;
+}
+
+
+/* ==============================
+   COMPAÑÍA
+================================ */
+
+.compania {
+  background: #f0f1f2;
+  padding: 65px 0;
+}
+
+.contenedor {
+  width: 88%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.titulo-rojo {
+  color: #9f1b29;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.compania h2 {
+  margin-top: 8px;
+  font-size: 35px;
+}
+
+.intro {
+  margin-top: 15px;
+  color: #777;
+}
+
+
+/* ==============================
+   TARJETAS
+================================ */
+
+.tarjetas {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.tarjeta {
+  min-height: 260px;
+  padding: 38px 35px;
+  background: white;
+  border-top: 3px solid #a71927;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.tarjeta span {
+  color: #9f1b29;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.tarjeta h3 {
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.tarjeta p {
+  margin-top: 25px;
+  color: #777;
+  line-height: 1.7;
+}
+
+.tarjeta small {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 7px 12px;
+  background: #ededed;
+  color: #555;
+  font-weight: bold;
+}
+
+
+/* ==============================
+   VIPER
+================================ */
+
+.viper {
+  margin-top: 70px;
+  padding: 40px;
+  background: white;
+  border-left: 5px solid #a71927;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viper span {
+  color: #a71927;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.viper h2 {
+  margin-top: 15px;
+  font-size: 32px;
+}
+
+.viper p {
+  margin-top: 15px;
+}
+
+.viper small {
+  display: block;
+  margin-top: 15px;
+  color: #777;
+  max-width: 750px;
+  line-height: 1.5;
+}
+
+.btn-viper {
+  background: #ad1726;
+  padding: 20px 28px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+
+/* ==============================
+   ACCESO
+================================ */
+
+.acceso {
+  padding: 70px 0;
+  background: #202a31;
+  color: white;
+}
+
+.acceso p {
+  margin-top: 15px;
+  color: #ccc;
+}
+
+
+/* ==============================
+   FOOTER
+================================ */
+
+footer {
+  padding: 30px;
+  text-align: center;
+  background: #151c21;
+  border-top: 4px solid #a71927;
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+
+/* ==============================
+   TABLET
+================================ */
+
+@media (max-width: 900px) {
+
+  .header {
+    height: auto;
+    padding: 25px;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .hero {
+    min-height: 420px;
+  }
+
+  .numero-fondo {
+    font-size: 200px;
+  }
+
+  .material-imagen {
+    flex-direction: column;
+    min-height: auto;
+    padding: 40px 0;
+  }
+
+  .escudo-grande {
+    width: 220px;
+    max-width: 80%;
+  }
+
+  .carros-img {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .viper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+}
+
+
+/* ==============================
+   CELULAR
+================================ */
+
+@media (max-width: 600px) {
+
+  .marca {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .marca h3 {
+    font-size: 14px;
+  }
+
+  .marca p {
+    letter-spacing: 2px;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav a {
+    text-align: center;
+  }
+
+  .btn-acceso {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .sobrelinea {
+    letter-spacing: 2px;
+  }
+
+  .lema {
+    font-size: 14px;
+    padding: 0;
+    letter-spacing: 2px;
+  }
+
+  .numero-fondo {
+    font-size: 140px;
+  }
+
+  .material-info {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .material {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .tarjeta {
+    padding: 30px 25px;
+  }
+
+  .viper {
+    padding: 30px 25px;
+  }
+
+  .btn-viper {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* ==============================
+   PÁGINAS INTERNAS
+================================ */
+
+.pagina-interna {
+  min-height: 70vh;
+  background: #f0f1f2;
+  padding: 60px 6%;
+}
+
+.titulo-interno {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.titulo-interno p {
+  color: #a71927;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.titulo-interno h1 {
+  margin-top: 10px;
+  font-size: 48px;
+  color: #20252a;
+}
+
+.titulo-interno span {
+  display: block;
+  margin-top: 15px;
+  color: #777;
+  font-size: 17px;
+}
+
+.bloques-guardia {
+  max-width: 1200px;
+  margin: 45px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.guardia-card {
+  background: white;
+  padding: 40px;
+  border-top: 4px solid #a71927;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.guardia-card span {
+  color: #a71927;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.guardia-card h2 {
+  margin-top: 20px;
+  font-size: 27px;
+}
+
+.guardia-card p {
+  margin-top: 18px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.guardia-card button {
+  margin-top: 30px;
+  padding: 15px 20px;
+
+  background: #ad1726;
+  color: white;
+
+  border: none;
+  border-radius: 3px;
+
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.volver {
+  max-width: 1200px;
+  margin: 40px auto 0;
+}
+
+.volver a {
+  color: #a71927;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+
+  .bloques-guardia {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-interno h1 {
+    font-size: 36px;
+  }
+
+}
+/* ==============================
+   INVENTARIO
+================================ */
+
+.inventario-carros {
+  max-width: 1200px;
+  margin: 45px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.carro-card {
+  background: white;
+  padding: 40px;
+  border-top: 4px solid #a71927;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.carro-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 90px;
+  height: 55px;
+
+  padding: 0 20px;
+
+  background: #a71927;
+  color: white;
+
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.carro-card h2 {
+  margin-top: 25px;
+  font-size: 28px;
+}
+
+.carro-card p {
+  margin-top: 18px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.carro-card a {
+  display: inline-block;
+
+  margin-top: 30px;
+
+  padding: 15px 20px;
+
+  background: #202a31;
+  color: white;
+
+  text-decoration: none;
+  font-weight: bold;
+
+  border-radius: 3px;
+}
+
+.carro-card a:hover {
+  background: #a71927;
+}
+
+@media (max-width: 700px) {
+
+  .inventario-carros {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* ==============================
+   TABLA INVENTARIO
+================================ */
+
+.tabla-inventario {
+  max-width: 1200px;
+  margin: 45px auto 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.fila-inventario {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 2fr;
+  gap: 15px;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.encabezado-inventario {
+  background: #202a31;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.estado,
+.fila-inventario input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+@media (max-width: 700px) {
+
+  .fila-inventario {
+    grid-template-columns: 1fr;
+  }
+
+  .encabezado-inventario {
+    display: none;
+  }
+
+}
+/* ==============================
+   TABLA INVENTARIO
+================================ */
+
+.tabla-inventario {
+  max-width: 1200px;
+  margin: 45px auto 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.fila-inventario {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 2fr;
+  gap: 15px;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.encabezado-inventario {
+  background: #202a31;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.estado,
+.fila-inventario input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+@media (max-width: 700px) {
+
+  .fila-inventario {
+    grid-template-columns: 1fr;
+  }
+
+  .encabezado-inventario {
+    display: none;
+  }
+
+}
+
+/* ===========================================================
+   REDISEÑO INSTITUCIONAL — PORTADA SEXTA COMPAÑÍA (2026-11)
+   Sólo la portada; preserva páginas de inventario y acceso.
+=========================================================== */
+.inicio-institucional { color:#3b2527; background:#fff; }
+.inicio-institucional .barra-avance { background:#991720; border-bottom:3px solid #c7a365; color:#fff; font-weight:700; letter-spacing:.075em; }
+.inicio-institucional .header { min-height:124px; background:#fff; border-bottom:5px solid #b5121b; box-shadow:0 5px 18px rgba(128,17,26,.08); position:relative; z-index:4; }
+.inicio-institucional .marca { gap:20px; }
+.inicio-institucional .marca img { width:104px; max-height:115px; object-fit:contain; filter:drop-shadow(0 4px 5px rgba(98,23,27,.13)); }
+.inicio-institucional .marca h3 { color:#8f1017; font-size:clamp(16px,1.5vw,22px); font-weight:900; }
+.inicio-institucional .marca p { color:#7d5454; letter-spacing:2px; font-weight:700; }
+.inicio-institucional nav { gap:22px; }
+.inicio-institucional nav a { color:#783036; }
+.inicio-institucional nav a:hover { color:#b5121b; }
+.inicio-institucional .btn-acceso { background:#a9101b; color:#fff!important; border-radius:5px; padding:17px 20px; box-shadow:0 5px 12px rgba(136,0,0,.16); }
+.inicio-institucional .hero { min-height:640px; padding:64px 6% 75px; flex-direction:column; background:linear-gradient(145deg,#fff 3%,#fff8f5 60%,#f6e8e2 100%); border-bottom:8px solid #a9101b; }
+.inicio-institucional .hero::before { background-image:repeating-linear-gradient(135deg,transparent 0 34px,rgba(161,32,39,.045) 35px,transparent 36px); opacity:1; }
+.inicio-institucional .numero-fondo { color:rgba(155,18,28,.05); font-size:clamp(170px,26vw,380px); top:6%; right:5%; line-height:1; pointer-events:none; }
+.inicio-institucional .hero-escudo { position:relative; z-index:2; width:min(235px,46vw); padding:10px; margin-bottom:20px; display:flex; justify-content:center; align-items:center; }
+.inicio-institucional .hero-escudo img { display:block; width:100%; max-height:225px; object-fit:contain; filter:drop-shadow(0 12px 13px rgba(127,40,35,.2)); }
+.inicio-institucional .hero-contenido { color:#8f1017; max-width:950px; }
+.inicio-institucional .sobrelinea { color:#9c3238; letter-spacing:3px; margin-bottom:16px; font-size:12px; }
+.inicio-institucional .hero h1 { color:#98131d; font-size:clamp(38px,5.4vw,76px); line-height:1.12; text-wrap:balance; }
+.inicio-institucional .hero h1 span { color:#541f25; }
+.inicio-institucional .lema { background:#a9101b; color:#fff; border-bottom:4px solid #d1ad6f; font-size:clamp(12px,1.5vw,18px); letter-spacing:2px; padding:17px 23px; border-radius:3px; max-width:100%; line-height:1.5; }
+.inicio-institucional .conoce { color:#8f1017; border-bottom:2px solid #b5121b; font-size:12px; }
+.inicio-institucional .franja { background:#caab74; }
+.inicio-institucional .material { background:#fff; }
+.inicio-institucional .material-imagen { background:linear-gradient(140deg,#fff 0%,#fff6f3 100%); border-radius:12px; }
+.inicio-institucional .escudo-grande { width:340px; max-width:27%; filter:drop-shadow(0 8px 9px rgba(123,23,30,.15)); }
+.inicio-institucional .material-info strong b { color:#aa1320; }
+.inicio-institucional .compania { background:#fff5f2; }
+.inicio-institucional .compania h2 { color:#8f1017; }
+.inicio-institucional .tarjeta { border-top:5px solid #b5121b; box-shadow:0 4px 16px rgba(124,31,33,.08); border-radius:5px; }
+.inicio-institucional .viper { border-left:6px solid #b5121b; box-shadow:0 4px 14px rgba(133,36,38,.06); }
+.inicio-institucional footer { background:#8f1017; color:#fff; border-top:5px solid #c8a96b; }
+@media(max-width:900px) {
+ .inicio-institucional .header { padding:20px 5%; }
+ .inicio-institucional .hero { min-height:0; padding:48px 5% 60px; }
+ .inicio-institucional .marca img { width:90px; }
+}
+@media(max-width:600px) {
+ .inicio-institucional .marca { flex-direction:row; text-align:left; gap:12px; }
+ .inicio-institucional .marca img { width:76px; }
+ .inicio-institucional .marca h3 { font-size:14px; }
+ .inicio-institucional .marca p { font-size:9px; letter-spacing:1px; }
+ .inicio-institucional .hero-escudo { width:170px; }
+ .inicio-institucional .hero h1 { font-size:clamp(32px,9vw,48px); }
+ .inicio-institucional .sobrelinea { letter-spacing:1px; }
+ .inicio-institucional .lema { margin:24px auto; }
+ .inicio-institucional .material-imagen { gap:18px; }
+ .inicio-institucional .escudo-grande { width:170px; max-width:65%; }
+}
+
+
+/* PORTADA BOMBERIL FORMAL · SEGUNDA ETAPA · ESPECÍFICO DE INICIO */
+.inicio-institucional .hero { padding-top:36px; padding-bottom:0; min-height:0; }
+.inicio-institucional .hero-escudo { width:min(180px,35vw); padding:0; margin-bottom:12px; }
+.inicio-institucional .hero-escudo img { max-height:180px; mix-blend-mode:multiply; }
+.inicio-institucional .hero-contenido { width:100%; }
+.inicio-institucional .hero h1 { font-size:clamp(36px,5vw,68px); }
+.inicio-institucional .lema { margin:23px auto; }
+.inicio-institucional .hero-botones { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-bottom:35px; }
+.inicio-institucional .hero-boton { display:inline-flex; align-items:center; justify-content:center; min-height:47px; padding:13px 22px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:900; letter-spacing:.07em; transition:background .2s ease,transform .2s ease; }
+.inicio-institucional .hero-boton:hover { transform:translateY(-2px); }
+.inicio-institucional .hero-boton-principal { background:#a9101b; color:white; border:2px solid #a9101b; }
+.inicio-institucional .hero-boton-secundario { background:#fff; color:#8f1017; border:2px solid #ad7b80; }
+.inicio-institucional .hero-carros { position:relative; z-index:2; width:min(1180px,100%); margin:0 auto; background:#fff; border-top:5px solid #b5121b; border-left:1px solid #e7d2d0; border-right:1px solid #e7d2d0; box-shadow:0 0 25px rgba(124,31,33,.07); padding:22px 25px 14px; }
+.inicio-institucional .hero-carros-titulo { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid #ebd9d2; padding-bottom:14px; color:#7a2830; font-size:12px; font-weight:800; letter-spacing:.09em; }
+.inicio-institucional .hero-carros-titulo strong { color:#a9101b; font-size:18px; }
+.inicio-institucional .hero-carros img { width:100%; max-height:400px; object-fit:contain; display:block; margin:auto; }
+.inicio-institucional .material { padding-top:45px; }
+.inicio-institucional .material-info { border-top:3px solid #b5121b; }
+.inicio-institucional .material-info strong { font-size:32px; }
+.inicio-institucional .tarjeta h3 { color:#90202a; }
+.inicio-institucional .tarjeta::after { content:""; width:44px; height:4px; display:block; background:#c8a96b; margin-top:25px; }
+@media(max-width:600px){
+ .inicio-institucional .hero { padding:28px 4% 0; }
+ .inicio-institucional .hero-escudo { width:145px; }
+ .inicio-institucional .hero-carros { padding:16px 12px 8px; }
+ .inicio-institucional .hero-carros-titulo strong { font-size:15px; }
+ .inicio-institucional .hero-carros img { max-height:260px; }
+ .inicio-institucional .hero-boton { width:100%; }
+ .inicio-institucional .hero-botones { margin-bottom:23px; }
+}
+
+
+/* Galería fotográfica bomberil formal, visible solo con fotos cargadas */
+.inicio-institucional .galeria-sexta { padding:68px 6%; background:#fff; border-top:5px solid #c8a96b; }
+.inicio-institucional .galeria-sexta[hidden], .inicio-institucional .galeria-sexta figure[hidden] { display:none!important; }
+.inicio-institucional .galeria-wrap { max-width:1370px; margin:auto; }
+.inicio-institucional .galeria-wrap h2 { font-size:clamp(28px,4vw,46px); color:#8f1017; margin:10px 0; }
+.inicio-institucional .galeria-intro { color:#70575a; line-height:1.6; margin-bottom:28px; }
+.inicio-institucional .galeria-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:19px; }
+.inicio-institucional .galeria-grid figure { overflow:hidden; background:#fff7f4; margin:0; border-bottom:4px solid #ac1826; box-shadow:0 5px 18px #8b20201a; }
+.inicio-institucional .galeria-grid img { display:block; width:100%; height:350px; object-fit:cover; }
+.inicio-institucional .galeria-grid figcaption { color:#8f1017; padding:17px 15px; font-size:12px; font-weight:900; letter-spacing:.05em; }
+@media(max-width:900px) {.inicio-institucional .galeria-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }}
+@media(max-width:600px) {.inicio-institucional .galeria-sexta {padding:42px 5%;}.inicio-institucional .galeria-grid {grid-template-columns:1fr;}.inicio-institucional .galeria-grid img{height:290px;}}

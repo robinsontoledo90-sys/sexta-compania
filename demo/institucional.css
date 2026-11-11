@@ -1,0 +1,170 @@
+.inicio-institucional .hero-escudo img{mix-blend-mode:normal}
+
+.inicio-institucional .hero{background:#0b1c36;color:#fff}
+.inicio-institucional .hero .sobrelinea,.inicio-institucional .hero h1,.inicio-institucional .hero h1 span,.inicio-institucional .hero .lema{color:#fff}
+.inicio-institucional .hero .hero-boton-secundario{background:transparent;color:#fff;border-color:#fff}
+
+
+#galeria-sexta{padding:72px 6%;background:#f5f2ed;border-top:0;scroll-margin-top:24px}
+#galeria-sexta .galeria-wrap{max-width:1200px;margin:auto}
+#galeria-sexta .accion-cabecera{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:32px;padding-bottom:28px;border-bottom:1px solid #d8cec0}
+#galeria-sexta .titulo-rojo{font-size:11px;letter-spacing:.2em;color:#942329;margin:0 0 12px;font-weight:800}
+#galeria-sexta h2{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.035em;color:#292624;margin:0}
+#galeria-sexta h2 span{display:block;color:#99252c}
+#galeria-sexta .galeria-intro{max-width:330px;margin:0;color:#655f58;font-size:14px;line-height:1.7}
+#galeria-sexta .galeria-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;align-items:stretch}
+#galeria-sexta figure{margin:0;position:relative;overflow:hidden;border:0;border-radius:6px;box-shadow:none;background:#221f1c}
+#galeria-sexta .accion-principal{grid-row:span 2;min-height:590px}
+#galeria-sexta .accion-secundaria{min-height:285px}
+#galeria-sexta figure img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;display:block}
+#galeria-sexta .accion-principal img{object-position:50% 65%}
+#galeria-sexta .accion-puesto img{object-position:50% 44%}
+#galeria-sexta .accion-dron img{object-position:50% 50%}
+#galeria-sexta figure:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(15,16,17,.2) 48%,rgba(15,16,17,.93) 100%);pointer-events:none}
+#galeria-sexta figcaption{position:absolute;bottom:0;left:0;right:0;z-index:1;padding:26px;color:#fff;font-size:inherit;letter-spacing:normal;font-weight:400}
+#galeria-sexta .accion-etiqueta{display:block;color:#e5c995;font-size:10px;font-weight:800;letter-spacing:.17em;margin-bottom:10px}
+#galeria-sexta figcaption h3{font-size:23px;line-height:1.15;color:#fff;margin:0 0 9px;letter-spacing:-.02em}
+#galeria-sexta .accion-principal h3{font-size:32px}
+#galeria-sexta figcaption p{font-size:13px;line-height:1.6;color:#e5e3e0;margin:0;max-width:350px}
+#galeria-sexta .accion-pie{display:flex;justify-content:space-between;gap:16px;padding-top:21px;color:#72695e;font-size:10px;letter-spacing:.12em;font-weight:700}
+@media(max-width:800px){
+ #galeria-sexta{padding:48px 6%}
+ #galeria-sexta .accion-cabecera{display:block}
+ #galeria-sexta .galeria-intro{margin-top:18px;max-width:440px}
+ #galeria-sexta .galeria-grid{grid-template-columns:1fr 1fr;gap:16px}
+ #galeria-sexta .accion-principal{grid-column:1/-1;grid-row:auto;min-height:480px}
+ #galeria-sexta .accion-secundaria{min-height:320px}
+ #galeria-sexta figcaption{padding:20px}
+ #galeria-sexta figcaption h3{font-size:21px}
+}
+@media(max-width:560px){
+ #galeria-sexta .galeria-grid{grid-template-columns:1fr}
+ #galeria-sexta .accion-principal{min-height:490px}
+ #galeria-sexta .accion-secundaria{min-height:330px}
+ #galeria-sexta .accion-principal h3{font-size:29px}
+ #galeria-sexta .accion-pie{flex-direction:column;gap:8px}
+}
+#galeria-sexta .galeria-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+
+
+.inicio-institucional {
+  --fondo-marino: #0b1c36;
+  --texto-claro: #f5f8ff;
+  --texto-secundario: #cdd9ec;
+  --acento-claro: #f5d39b;
+  background: var(--fondo-marino);
+  color: var(--texto-claro);
+}
+.inicio-institucional :is(.barra-avance,.header,.hero,.hero-carros,.compania,.tarjeta,.viper,footer),
+.inicio-institucional #galeria-sexta {
+  background: var(--fondo-marino);
+  color: var(--texto-claro);
+}
+.inicio-institucional .header nav { background: transparent; }
+.inicio-institucional :is(.marca h3,.header nav a:not(.btn-acceso),.compania h2,.tarjeta h3,.hero-carros-titulo strong),
+.inicio-institucional #galeria-sexta h2 { color: var(--texto-claro); }
+.inicio-institucional :is(.marca p,.intro,.tarjeta p,.tarjeta small,.viper p),
+.inicio-institucional #galeria-sexta :is(.galeria-intro,.accion-pie) { color: var(--texto-secundario); }
+.inicio-institucional :is(.titulo-rojo,.tarjeta span,.viper span,.viper a,.hero-carros-titulo),
+.inicio-institucional #galeria-sexta :is(.titulo-rojo,h2 span) { color: var(--acento-claro); }
+.inicio-institucional :is(.tarjeta,.viper,.hero-carros) { box-shadow: none; }
+.inicio-institucional #galeria-sexta .accion-cabecera { border-color: #405471; }
+
+
+.inicio-institucional .barra-avance {
+  padding: 9px 5%;
+  border-bottom: 1px solid #ffffff24;
+  color: #cdd9ec;
+  letter-spacing: .12em;
+}
+.inicio-institucional .header {
+  padding: 16px max(5%, calc((100% - 1240px)/2));
+  border-bottom: 1px solid #ffffff28;
+  box-shadow: none;
+}
+.inicio-institucional .marca img { width: 64px; }
+.inicio-institucional .hero {
+  background: radial-gradient(ellipse at 50% 8%, #214166 0%, #0b1c36 64%);
+  padding-top: clamp(44px, 7vw, 96px);
+}
+.inicio-institucional .hero-escudo { width: min(226px, 46vw); margin-bottom: 24px; }
+.inicio-institucional .hero-escudo img { max-height: 218px; filter: drop-shadow(0 12px 18px #0006); }
+.inicio-institucional .hero h1 { letter-spacing: -.035em; }
+.inicio-institucional .hero h1 span { color: #dce7f9; }
+.inicio-institucional .hero .sobrelinea { color: #f5d39b; }
+.inicio-institucional .hero .lema {
+  background: transparent;
+  border-bottom: 1px solid #f5d39b70;
+  color: #f5d39b;
+  margin: 16px auto 24px;
+}
+.inicio-institucional .hero-carros {
+  width: min(1100px,100%);
+  border: 1px solid #405471;
+  border-radius: 12px 12px 0 0;
+  padding: 18px clamp(16px,3vw,32px);
+}
+.inicio-institucional .hero-carros-titulo { border-color: #405471; }
+.inicio-institucional #galeria-sexta,
+.inicio-institucional .compania { padding-block: clamp(44px,7vw,90px); }
+.inicio-institucional #galeria-sexta .galeria-grid {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: clamp(14px,2.5vw,28px);
+}
+.inicio-institucional #galeria-sexta figure {
+  min-height: clamp(290px,38vw,470px);
+  border: 1px solid #ffffff2b;
+  border-radius: 12px;
+}
+.inicio-institucional .tarjetas { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.inicio-institucional :is(.tarjeta,.viper) {
+  background: #112644;
+  border: 1px solid #405471;
+  border-radius: 12px;
+  padding: clamp(20px,3vw,34px);
+}
+.inicio-institucional .viper a:hover,
+.inicio-institucional .header nav a:not(.btn-acceso):hover { color: #f5d39b; }
+.inicio-institucional a:focus-visible { outline: 2px solid #f5d39b; outline-offset: 4px; }
+.inicio-institucional footer { border-top: 1px solid #405471; }
+@media (max-width: 650px) {
+  .inicio-institucional #galeria-sexta .galeria-grid,
+  .inicio-institucional .tarjetas { grid-template-columns: 1fr; }
+}
+
+
+.inicio-institucional :is(.hero-carros,.galeria-wrap,.compania .contenedor) {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+.inicio-institucional :is(.hero,#galeria-sexta,.compania) { padding-inline: 5%; }
+.inicio-institucional .hero-contenido { max-width: 920px; margin-inline: auto; text-align: center; }
+.inicio-institucional .hero h1 { margin-inline: auto; text-wrap: balance; }
+.inicio-institucional .hero-botones > a { min-width: min(100%, 260px); }
+.inicio-institucional #galeria-sexta .accion-cabecera {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: end;
+  gap: 24px;
+  text-align: left;
+}
+.inicio-institucional #galeria-sexta .galeria-intro { max-width: 42ch; }
+.inicio-institucional :is(#galeria-sexta .galeria-grid,.tarjetas) { gap: 24px; }
+.inicio-institucional #galeria-sexta figure figcaption {
+  display: grid;
+  align-content: end;
+  gap: 8px;
+  min-height: 145px;
+  padding: 20px 24px;
+  text-align: left;
+}
+.inicio-institucional #galeria-sexta figcaption :is(h3,p) { margin: 0; }
+.inicio-institucional .compania { text-align: left; }
+.inicio-institucional .compania .intro { max-width: 65ch; margin: 12px 0 28px; }
+.inicio-institucional :is(.tarjeta,.viper) { text-align: left; }
+.inicio-institucional :is(.tarjeta,.viper) :is(h2,h3) { margin: 8px 0 12px; }
+.inicio-institucional :is(.tarjeta,.viper) p { max-width: 65ch; line-height: 1.65; }
+@media (max-width: 650px) {
+  .inicio-institucional #galeria-sexta .accion-cabecera { grid-template-columns: 1fr; gap: 12px; }
+}

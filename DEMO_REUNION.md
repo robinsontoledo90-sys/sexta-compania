@@ -27,3 +27,7 @@ No se importa ningún cliente de backend ni se hacen peticiones externas. La pol
 `node tests/demo-perfiles.test.cjs` verifica credenciales inválidas, separación de perfiles, ambas asistencias, cierre de actividad, bloqueo al voluntario, limpieza de resumen, reinicio y aislamiento. Verificación manual de navegador y ancho móvil: 390 px.
 
 La rama `demo/perfiles-reunion` permite revisar sin modificar `main`. La vista previa local es la alternativa validada para la reunión. Si se requiere alojamiento público, publicar únicamente el directorio `demo` en un sitio de pruebas separado, sin secretos, dominio operativo ni variables de producción. No cambiar la rama/origen de GitHub Pages del sitio institucional para publicar una prueba. No fusionar ni desplegar producción como parte de esta preparación.
+
+## Identidad visual y recorrido desde la portada
+
+La dirección raíz de la vista previa ahora muestra `demo/inicio.html`: una copia de la portada actual del repositorio, con el mismo escudo, fotografías y colores azul marino, blanco, rojo y dorado. «Acceso voluntarios» lleva al login ficticio. `demo/css/style.css` es copia del estilo institucional y `demo/institucional.css` conserva los estilos incluidos en la portada. `node demo/build-home.cjs` regenera la portada de prueba y esos estilos incluidos. La hoja original y la portada de producción permanecen sin cambios. Los enlaces de acceso real se sustituyen por el login ficticio y no se carga código de autenticación. El apartado de guardias no tiene funciones en esta vista previa.
