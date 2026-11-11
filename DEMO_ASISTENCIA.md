@@ -23,3 +23,18 @@ Solo el ayudante genera la exportación.
 - Se muestran dos registros ficticios iniciales (uno pendiente y otro validado) y se pueden reiniciar.
 - El sistema real asistencia.html y sus políticas de Supabase conservan el flujo anterior; esta actualización afecta únicamente la demo. Llevarla a producción requiere autorización y otra implementación de permisos y entrega de correo.
 - Pruebas: tests/asistencia-demo-v2.test.cjs. Incluyen privacidad por rol, declaración, identidad, corrección sin lectura completa, autoría, historial, estados, totales, rango inclusivo, CSV, aislamiento y reinicio.
+
+## Ampliación: asistencia en vivo y academias
+
+El panel superior ofrece dos actividades ficticias independientes: emergencia y academia. Cada una muestra fecha, hora, responsable/instructor y estado. El voluntario registra y consulta su propia participación; el oficial supervisa la lista, cierra la actividad y exporta CSV. El perfil oficial usa rojo y el voluntario gris con rótulos explícitos. No hay asistencia duplicada por identidad ni altas tras el cierre.
+
+El formulario complementario permite nombre y RUT del titular, patente opcional y hasta diez acompañantes con nombre y RUT. Valida dígito verificador, duplicados dentro del grupo y formato de patente. Las visitas se muestran solo al perfil oficial y no se suman a la dotación. Al cambiar de actividad o identidad se limpian los campos sin enviar.
+
+El panel es una simulación en memoria de esta pestaña: no hay sincronización entre dispositivos, cuentas, conexión al backend ni persistencia. Reiniciar simulación en vivo restaura este panel; Reiniciar demo restaura el circuito formal inferior. Recargar restaura ambos. El circuito formal de revisión por ayudante conserva sus permisos.
+
+### Verificación de esta ampliación
+- Navegador: asistencia en emergencia, cambio a oficial, supervisión, academia independiente, prevención de duplicado y cierre que bloquea nuevas asistencias y grupos.
+- Formulario: titular sin patente y acompañante válido aceptados; RUT incorrecto y RUT repetido rechazados; eliminación de acompañante comprobada.
+- Privacidad visual: voluntario ve únicamente su participación y no ve grupos complementarios.
+- Consola del navegador sin errores durante el recorrido. Sintaxis JavaScript y pruebas del motor anterior correctas.
+- La prueba antigua asistencia-ui.test.cjs falla en su expectativa de que el voluntario no pueda crear actividades en el sistema real. Esa discrepancia ya existe en la base y no corresponde a los archivos modificados por esta demo.
