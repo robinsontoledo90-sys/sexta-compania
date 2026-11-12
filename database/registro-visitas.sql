@@ -86,6 +86,7 @@ declare actor_id uuid:=auth.uid(); perfil public.voluntarios_autorizados%rowtype
  desde timestamptz; hasta timestamptz; corte timestamptz; cursor_fecha timestamptz; cursor_id uuid; filas jsonb; cantidad integer;
 begin
  if actor_id is null then raise exception 'Inicia sesión para consultar registros.' using errcode='42501'; end if;
+ if not exists (select 1 from auth.users u where u.id=actor_id and lower(u.email)='ayudantesexta@bomberosiquique.cl' and u.email_confirmed_at is not null) then raise exception 'Cuenta no autorizada para consultar inscripciones.' using errcode='42501'; end if;
  select * into perfil from public.voluntarios_autorizados where user_id=actor_id and habilitado;
  if not found or coalesce(perfil.cargo,'') not in ('CAPITÁN','TENIENTE PRIMERO','AYUDANTE') then raise exception 'Tu cuenta no tiene permiso para consultar o descargar inscripciones.' using errcode='42501'; end if;
  desde:=coalesce(((p_filtros->>'desde')::date::timestamp at time zone 'America/Santiago'),'2000-01-01'::timestamptz);
