@@ -12,7 +12,7 @@ Ejecutar `node demo/serve.cjs` desde la raíz y abrir http://127.0.0.1:4176. El 
 | Voluntario | voluntario.demo | VoluntarioDemo6! |
 
 1. Ingresar como Voluntario: consultar únicamente su asistencia a emergencias y academias, sin agregar, editar ni retirar asistencia.
-2. Pulsar «Registrar asistencia a emergencia como OVAC» para abrir el formulario separado (fecha, clave y declaración ficticias). El envío solo confirma recepción demostrativa pendiente de revisión; no modifica la consulta personal.
+2. Pulsar «Registrar asistencia a emergencia como OBAC» para abrir el formulario separado (fecha, clave y declaración ficticias). El envío solo confirma recepción demostrativa pendiente de revisión; no modifica la consulta personal.
 3. Cerrar sesión de prueba e ingresar como Oficial: consultar el resumen y abrir/cerrar actividades ficticias. El voluntario nunca ve el resumen de dotación y sus consultas siguen siendo solo lectura.
 4. Reiniciar demo restaura el estado inicial; recargar también borra todo.
 
@@ -24,7 +24,7 @@ No se importa ningún cliente de backend ni se hacen peticiones externas. La pol
 
 ## Validación y publicación
 
-`node tests/demo-perfiles.test.cjs` verifica credenciales inválidas, separación de perfiles, consultas sin edición, registro OVAC separado, cierre de actividad, limpieza de resumen, reinicio y aislamiento. Verificación manual de navegador y ancho móvil: 390 px.
+`node tests/demo-perfiles.test.cjs` verifica credenciales inválidas, separación de perfiles, consultas sin edición, registro OBAC separado, cierre de actividad, limpieza de resumen, reinicio y aislamiento. Verificación manual de navegador y ancho móvil: 390 px.
 
 La rama `demo/perfiles-reunion` permite revisar sin modificar `main`. La vista previa local es la alternativa validada para la reunión. Si se requiere alojamiento público, publicar únicamente el directorio `demo` en un sitio de pruebas separado, sin secretos, dominio operativo ni variables de producción. No cambiar la rama/origen de GitHub Pages del sitio institucional para publicar una prueba. No fusionar ni desplegar producción como parte de esta preparación.
 

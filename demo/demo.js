@@ -16,7 +16,7 @@
     if (!role) return;
     const officer = role === 'oficial';
     $('title').textContent = officer ? 'Panel Oficial' : 'Panel Voluntario';
-    $('permissions').textContent = officer ? 'Oficial de prueba · Supervisión y gestión de actividades ficticias.' : 'Voluntario de prueba · Consulta únicamente tu asistencia a emergencias y academias. Registro de emergencias mediante OVAC.';
+    $('permissions').textContent = officer ? 'Oficial de prueba · Supervisión y gestión de actividades ficticias.' : 'Voluntario de prueba · Consulta únicamente tu asistencia a emergencias y academias. Registro de emergencias mediante OBAC.';
     $('command').hidden = !officer;
     $('activities').replaceChildren();
     for (const activity of activities) {
@@ -60,8 +60,8 @@
   $('ovacForm').addEventListener('submit',event=>{
     event.preventDefault();
     if(role!=='voluntario')return;
-    if(!$('ovacDate').value||!$('ovacCode').value.trim()||!$('ovacDeclaration').checked){$('ovacResult').textContent='Completa la fecha y la clave ficticias y confirma que actuaste como OVAC.';return;}
-    $('ovacResult').textContent='Registro OVAC recibido solo en la demo · Fecha: '+$('ovacDate').value+' · Clave: '+$('ovacCode').value.trim()+'. Pendiente de revisión simulada. No se envió ningún registro real ni se modificó tu asistencia de consulta.';
+    if(!$('ovacDate').value||!$('ovacCode').value.trim()||!$('ovacDeclaration').checked){$('ovacResult').textContent='Completa la fecha y la clave ficticias y confirma que actuaste como OBAC.';return;}
+    $('ovacResult').textContent='Registro OBAC recibido solo en la demo · Fecha: '+$('ovacDate').value+' · Clave: '+$('ovacCode').value.trim()+'. Pendiente de revisión simulada. No se envió ningún registro real ni se modificó tu asistencia de consulta.';
     $('ovacForm').reset();
   });
   // Public fixtures, never credentials for a real service. No auth client is loaded.

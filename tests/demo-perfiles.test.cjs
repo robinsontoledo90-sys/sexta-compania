@@ -31,4 +31,4 @@ assert.equal(get('roster').children.length,0);
 get('reset').fire();assert.equal(get('ovacResult').textContent,'');assert.match(action(0).textContent,/Ver mi asistencia/);
 assert.doesNotMatch(source,/fetch\s*\(|XMLHttpRequest|supabase|localStorage|sessionStorage|WebSocket/);
 const html=fs.readFileSync(path.join(__dirname,'../demo/index.html'),'utf8');assert.match(html,/connect-src 'none'/);assert.doesNotMatch(html,/https?:\/\//);
-console.log('PASS: cuentas ficticias, acceso inválido, roles, consulta sin edición, registro OVAC separado, cierre, aislamiento y reinicio');
+console.log('PASS: cuentas ficticias, acceso inválido, roles, consulta sin edición, registro OBAC separado, cierre, aislamiento y reinicio');
